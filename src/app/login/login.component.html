@@ -1,0 +1,11 @@
+<div class="form-group">
+  <label for="inputEmail">Login</label>
+  <input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+         placeholder="Enter login" [(ngModel)]="username">
+  <small id="emailHelp" class="form-text text-muted">Please, contact your teacher, if u have problems.</small>
+</div>
+<div class="form-group">
+  <label for="inputPassword">Password</label>
+  <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password">
+</div>
+<button type="button" class="btn btn-primary" (click)="onLogin()">Login</button>

@@ -31,11 +31,18 @@ import { XLargeDirective } from './home/x-large';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import {AuthService} from "./auth.service";
+import {LoginComponent} from "./login/login.component";
+import {AuthGuard} from "./auth-guard.service";
+import {TodayComponent} from "./today.component/today.component";
+import {UserComponent} from "./user.component/user.component";
+import {ApiService} from "./api.service";
+import {WeekComponent} from "./week.component/week.component";
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState, AuthService, AuthGuard, ApiService
 ];
 
 type StoreType = {
@@ -53,8 +60,12 @@ type StoreType = {
     AppComponent,
     AboutComponent,
     HomeComponent,
+    LoginComponent,
     NoContentComponent,
-    XLargeDirective
+    XLargeDirective,
+    TodayComponent,
+    UserComponent,
+    WeekComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,

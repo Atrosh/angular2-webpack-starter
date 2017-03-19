@@ -1,0 +1,32 @@
+<!--<div class="list-group">-->
+<!--<a *ngFor="let l of days" class="list-group-item list-group-item-action">-->
+<!--<h5 class="list-group-item-heading">{{l.course.name}}</h5>-->
+<!--<p class="list-group-item-text">{{l.date | date: 'HH:mm'}}</p>-->
+<!--</a>-->
+<!--</div>-->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="list-group">
+      <a *ngFor="let l of day" class="list-group-item list-group-item-action">
+        <h5 class="list-group-item-heading"> {{l.date | date: 'HH:mm'}}, {{l.course.name}}, {{l.info}}</h5>
+        <p class="list-group-item-text">{{l.task}}</p>
+      </a>
+    </div>
+  </div>
+</div>
+<div><p></p></div>
+<div class="row">
+  <div class="col-sm-6" *ngFor="let d of days">
+    <div class="card" *ngIf="d[0]?.date > 0">
+      <div class="card-header" (click)="selectDay(d)">
+        {{d[0]?.date | date: 'EEE, dd.MM' }}
+      </div>
+      <div class="card-block">
+        <blockquote class="card-blockquote" *ngFor="let lesson of d">
+          <p>{{lesson.date | date: 'HH:mm'}}, {{lesson.course.name}}</p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>
+
