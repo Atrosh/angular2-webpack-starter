@@ -38,6 +38,7 @@ import {TodayComponent} from "./today.component/today.component";
 import {UserComponent} from "./user.component/user.component";
 import {ApiService} from "./api.service";
 import {WeekComponent} from "./week.component/week.component";
+import {AdminComponent} from "./admin.component/admin.component";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -66,6 +67,7 @@ type StoreType = {
     TodayComponent,
     UserComponent,
     WeekComponent,
+    AdminComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,

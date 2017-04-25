@@ -1,0 +1,75 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#userslist" role="tab">Users</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#newuser" role="tab">New user</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content container">
+  <div class="tab-pane active" id="userslist" role="tabpanel">
+    <h4>Users list</h4>
+    <table class="table table-striped table-sm">
+      <thead>
+      <tr>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Created</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody class="">
+      <tr *ngFor="let u of users">
+        <td>{{u.username}}</td>
+        <td>{{u.firstName}}</td>
+        <td>{{u.lastName}}</td>
+        <td>{{u.created | date: 'dd:MM:yy'}}</td>
+        <td>
+          <div class="align-middle">
+            <button type="button" class="close" aria-label="Close" (click)="deletUser(u.id)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="newuser" role="tabpanel">
+    <h4>Create new user</h4>
+    <div>
+      <div class="form-group row form-inline">
+        <input type="text" class="form-control" placeholder="Username"
+               [(ngModel)]="newUser.username">
+        <input type="text" class="form-control" placeholder="Password"
+               [(ngModel)]="newUser.password">
+      </div>
+      <div class="form-group row form-inline">
+        <input type="text" class="form-control" placeholder="First name"
+               [(ngModel)]="newUser.firstName">
+        <input type="text" class="form-control" placeholder="Last name"
+               [(ngModel)]="newUser.lastName">
+      </div>
+      <div class="form-group row form-inline">
+        <input type="text" class="form-control" placeholder="Description"
+               [(ngModel)]="newUser.info">
+        <input type="button" class="btn btn-primary" value="Create" (click)="createUser()">
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="messages" role="tabpanel">...</div>
+  <div class="tab-pane" id="settings" role="tabpanel">...</div>
+</div>
+
+
+
+

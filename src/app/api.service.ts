@@ -17,8 +17,21 @@ export class ApiService {
   constructor(private http: Http) {
   }
 
+  deleteUser(id) {
+    this.http.delete(this.API_URL + 'user/' + id, this.getRequestOptions()).subscribe();
+  }
+
+  createNewUser(user) {
+    this.http.post(this.API_URL + 'user', user, this.getRequestOptions()).subscribe();
+  }
+
   getCurrentUser() {
     return this.http.get(this.API_URL + 'me', this.getRequestOptions())
+      .map(res => res.json());
+  }
+
+  getAllUsers() {
+    return this.http.get(this.API_URL + 'user/all', this.getRequestOptions())
       .map(res => res.json());
   }
 
