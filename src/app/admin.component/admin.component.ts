@@ -22,15 +22,6 @@ export class AdminComponent {
     this.getAllUsers();
   }
 
-  loggedIn() {
-    //this.getCurrentUser();
-    return this.auth.loggedIn();
-  }
-
-  logout() {
-    this.auth.logout();
-  }
-
   getAllUsers() {
     this.api.getAllUsers().subscribe(
       data => this.users = data,
@@ -39,13 +30,15 @@ export class AdminComponent {
   }
 
   createUser() {
-    this.api.createNewUser(this.newUser);
-    this.getAllUsers();
+    this.api.createNewUser(this.newUser).subscribe(
+      data => this.users.push(data),
+      error => console.log(error)
+    );
   }
 
-  deletUser(id) {
-    this.api.deleteUser(id);
-    this.getAllUsers();
+  deleteUser(id) {
+    this.api.deleteUser(id).subscribe();
+    this.users = this.users.filter(user => user.id != id);
   }
 
 }

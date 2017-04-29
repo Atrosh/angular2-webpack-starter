@@ -32,10 +32,10 @@
         <td>{{u.username}}</td>
         <td>{{u.firstName}}</td>
         <td>{{u.lastName}}</td>
-        <td>{{u.created | date: 'dd:MM:yy'}}</td>
+        <td>{{u.created | date: 'dd.MM.yy'}}</td>
         <td>
           <div class="align-middle">
-            <button type="button" class="close" aria-label="Close" (click)="deletUser(u.id)">
+            <button type="button" class="close" aria-label="Close" (click)="deleteUser(u.id)">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>

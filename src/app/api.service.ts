@@ -18,11 +18,12 @@ export class ApiService {
   }
 
   deleteUser(id) {
-    this.http.delete(this.API_URL + 'user/' + id, this.getRequestOptions()).subscribe();
+    return this.http.delete(this.API_URL + 'user/' + id, this.getRequestOptions());
   }
 
   createNewUser(user) {
-    this.http.post(this.API_URL + 'user', user, this.getRequestOptions()).subscribe();
+    return this.http.post(this.API_URL + 'user', user, this.getRequestOptions())
+      .map(res => res.json());
   }
 
   getCurrentUser() {
