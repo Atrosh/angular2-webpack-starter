@@ -13,18 +13,37 @@ import {ApiService} from "../api.service";
 export class AdminComponent {
 
   users = [];
-  newUser = {username: "", password: "", firstName: "", lastName: "", info: ""};
+  roles = [];
+  organisations = [];
+  newUser = {username: "", password: "", firstName: "", lastName: "", info: "", roles: [{role:"ROLE_USER"}], organisation: {}};
 
   constructor(private auth: AuthService, private api: ApiService) {
   }
 
   ngOnInit() {
     this.getAllUsers();
+    this.getAllRoles();
+    this.getAllOrganisations();
+
   }
 
   getAllUsers() {
     this.api.getAllUsers().subscribe(
       data => this.users = data,
+      error => console.log(error)
+    );
+  }
+
+  getAllRoles() {
+    this.api.getRoles().subscribe(
+      data => this.roles = data,
+      error => console.log(error)
+    );
+  }
+
+  getAllOrganisations() {
+    this.api.getOrganisations().subscribe(
+      data => this.organisations = data,
       error => console.log(error)
     );
   }

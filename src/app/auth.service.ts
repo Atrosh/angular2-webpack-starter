@@ -2,7 +2,7 @@
  * Created by vladr on 19.12.2016.
  */
 import {Injectable} from "@angular/core";
-import {Http, Headers, RequestOptions} from "@angular/http";
+import {Http} from "@angular/http";
 import "rxjs/add/operator/map";
 import {tokenNotExpired} from "angular2-jwt";
 import {Router} from "@angular/router";
@@ -20,15 +20,13 @@ export class AuthService {
   }
 
   login(credentials) {
-    this.http.post(this.api.API_URL + 'auth/login', credentials, this.getHeaders())
-      .map(res => res.json())
-      .subscribe(
-        data => {
-          localStorage.setItem('id_token', data.token);
-          this.router.navigateByUrl(this.redirectUrl);
-        },
-        error => console.log(error)
-      );
+    this.api.login(credentials).subscribe(
+      data => {
+        localStorage.setItem('id_token', data.token);
+        this.router.navigateByUrl(this.redirectUrl);
+      },
+      error => console.log(error)
+    );
   }
 
   logout() {
@@ -41,12 +39,4 @@ export class AuthService {
     return tokenNotExpired();
   }
 
-  getHeaders() {
-    let headers = new Headers({
-      'X-Requested-With': 'XMLHttpRequest',
-      'Content-Type': 'application/json',
-      'Cache-Control': 'no-cache'
-    });
-    return new RequestOptions({headers: headers});
-  }
 }

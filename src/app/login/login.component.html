@@ -1,11 +1,15 @@
+<form (ngSubmit)="onLogin()" #loginForm="ngForm">
 <div class="form-group">
   <label for="inputEmail">Login</label>
   <input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-         placeholder="Enter login" [(ngModel)]="username">
+         placeholder="Enter login" [(ngModel)]="username" name="username" required>
   <small id="emailHelp" class="form-text text-muted">Please, contact your teacher, if u have problems.</small>
 </div>
 <div class="form-group">
   <label for="inputPassword">Password</label>
-  <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password">
+  <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+         [(ngModel)]="password" name="password" required>
 </div>
-<button type="button" class="btn btn-primary" (click)="onLogin()">Login</button>
+<!--<button type="button" class="btn btn-primary" (click)="onLogin()">Login</button>-->
+  <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
+</form>

@@ -1,20 +1,22 @@
 /**
  * Created by vladr on 21.12.2016.
  */
-import {Injectable} from '@angular/core';
-import {Http, Headers, RequestOptions} from '@angular/http';
-import 'rxjs/add/operator/map';
-import {Observable} from "rxjs";
+import {Injectable} from "@angular/core";
+import {Headers, Http, RequestOptions} from "@angular/http";
+import "rxjs/add/operator/map";
 import any = jasmine.any;
-import {Router} from "@angular/router";
-import {AuthService} from "./auth.service";
 
 @Injectable()
 export class ApiService {
 
-  API_URL = 'http://localhost:8080/api/';
+  API_URL = 'api/';
 
   constructor(private http: Http) {
+  }
+
+  login(credentials) {
+    return this.http.post(this.API_URL + 'auth/login', credentials, this.getRequestOptions())
+      .map(res => res.json());
   }
 
   deleteUser(id) {
@@ -43,6 +45,21 @@ export class ApiService {
 
   getWeek() {
     return this.http.get(this.API_URL + 'week', this.getRequestOptions())
+      .map(res => res.json());
+  }
+
+  getRoles() {
+    return this.http.get(this.API_URL + 'role', this.getRequestOptions())
+      .map(res => res.json());
+  }
+
+  getOrganisations() {
+    return this.http.get(this.API_URL + 'organisation', this.getRequestOptions())
+      .map(res => res.json());
+  }
+
+  createOrganisations(organisation) {
+    return this.http.post(this.API_URL + 'organisation', organisation, this.getRequestOptions())
       .map(res => res.json());
   }
 

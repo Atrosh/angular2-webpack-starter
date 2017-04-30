@@ -8,6 +8,7 @@ import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from './auth-guard.service';
 import {WeekComponent} from "./week.component/week.component";
 import {AdminComponent} from "./admin.component/admin.component";
+import {CourseComponent} from "./course.component/course.component";
 
 export const ROUTES: Routes = [
 
@@ -18,6 +19,7 @@ export const ROUTES: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'week', component: WeekComponent, canActivate: [AuthGuard]},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
+  {path: 'course', component: CourseComponent, canActivate: [AuthGuard]},
   {path: 'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: NoContentComponent},

@@ -15,6 +15,7 @@
 
 <!-- Tab panes -->
 <div class="tab-content container">
+  <!--Tab users list-->
   <div class="tab-pane active" id="userslist" role="tabpanel">
     <h4>Users list</h4>
     <table class="table table-striped table-sm">
@@ -44,29 +45,50 @@
       </tbody>
     </table>
   </div>
+  <!--Tab create user-->
   <div class="tab-pane" id="newuser" role="tabpanel">
     <h4>Create new user</h4>
-    <div>
+    <form (ngSubmit)="createUser(); userForm.reset()" #userForm="ngForm">
       <div class="form-group row form-inline">
-        <input type="text" class="form-control" placeholder="Username"
-               [(ngModel)]="newUser.username">
-        <input type="text" class="form-control" placeholder="Password"
-               [(ngModel)]="newUser.password">
+        <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Username"
+               [(ngModel)]="newUser.username" name="username" required>
+        <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Password"
+               [(ngModel)]="newUser.password" name="password" required>
       </div>
       <div class="form-group row form-inline">
-        <input type="text" class="form-control" placeholder="First name"
-               [(ngModel)]="newUser.firstName">
-        <input type="text" class="form-control" placeholder="Last name"
-               [(ngModel)]="newUser.lastName">
+        <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="First name"
+               [(ngModel)]="newUser.firstName" name="firstName">
+        <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Last name"
+               [(ngModel)]="newUser.lastName" name="lastName">
       </div>
       <div class="form-group row form-inline">
-        <input type="text" class="form-control" placeholder="Description"
-               [(ngModel)]="newUser.info">
-        <input type="button" class="btn btn-primary" value="Create" (click)="createUser()">
+        <div class="dropdown show mb-2 mr-sm-2 mb-sm-1">
+          <button class="btn btn-secondary dropdown-toggle" id="roles" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{newUser.roles[0].role}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="roles">
+            <a class="dropdown-item" *ngFor="let role of roles" (click)="newUser.roles.push(role)">{{role.role}}</a>
+          </div>
+        </div>
+        <div class="dropdown show mb-2 mr-sm-2 mb-sm-1">
+          <button class="btn btn-secondary dropdown-toggle" id="orgs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{newUser.organisation.name}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="orgs">
+            <a class="dropdown-item" *ngFor="let organisation of organisations" (click)="newUser.organisation = organisation">{{organisation.name}}</a>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="form-group row form-inline">
+        <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Description"
+               [(ngModel)]="newUser.info" name="info">
+        <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!userForm.form.valid">Create</button>
+      </div>
+    </form>
   </div>
+  <!--Tab-->
   <div class="tab-pane" id="messages" role="tabpanel">...</div>
+  <!--Tab-->
   <div class="tab-pane" id="settings" role="tabpanel">...</div>
 </div>
 

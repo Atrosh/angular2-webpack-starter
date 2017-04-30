@@ -14,6 +14,7 @@ import {
   RouterModule,
   PreloadAllModules
 } from '@angular/router';
+import "froala-editor/js/froala_editor.pkgd.min.js";
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -39,6 +40,8 @@ import {UserComponent} from "./user.component/user.component";
 import {ApiService} from "./api.service";
 import {WeekComponent} from "./week.component/week.component";
 import {AdminComponent} from "./admin.component/admin.component";
+import {FroalaEditorModule, FroalaViewModule} from "angular2-froala-wysiwyg";
+import {CourseComponent} from "./course.component/course.component";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -68,11 +71,13 @@ type StoreType = {
     UserComponent,
     WeekComponent,
     AdminComponent,
+    CourseComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
