@@ -28,6 +28,11 @@ export class ApiService {
       .map(res => res.json());
   }
 
+  createNewCourse(course) {
+    return this.http.post(this.API_URL + 'course', course, this.getRequestOptions())
+      .map(res => res.json());
+  }
+
   getCurrentUser() {
     return this.http.get(this.API_URL + 'me', this.getRequestOptions())
       .map(res => res.json());
