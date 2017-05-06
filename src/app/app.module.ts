@@ -42,6 +42,7 @@ import {WeekComponent} from "./week.component/week.component";
 import {AdminComponent} from "./admin.component/admin.component";
 import {FroalaEditorModule, FroalaViewModule} from "angular2-froala-wysiwyg";
 import {CourseComponent} from "./course.component/course.component";
+import {Ng2OrderModule} from "ng2-order-pipe";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -77,6 +78,7 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    Ng2OrderModule,
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
