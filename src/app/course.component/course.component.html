@@ -15,19 +15,20 @@
       Public course
     </label>
   </div>
-  <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!courseForm.form.valid">Continue</button>
+  <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!courseForm.form.valid">Continue <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 </form>
 
 <form [hidden]="course.id == NaN" (ngSubmit)="createCourse(); unitsForm.reset()" #unitsForm="ngForm">
-  <h4>Add units to course {{course.name}}: <span class="badge badge-success" (click)="addUnit()">+</span></h4>
+  <h4>Add units to course {{course.name}}: </h4>
   <div id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="card" *ngFor="let unit of course.units">
+    <div class="card mb-2 mr-sm-2 mb-sm-1" *ngFor="let unit of course.units | orderBy 'serial'">
       <div class="card-header" role="tab" id="headingOne">
         <h5 class="mb-0">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            {{unit.serial}}){{unit.name}}
+            {{i}}{{unit.serial}}){{unit.name}}
           </a>
         </h5>
+        <i class="fa fa-trash" aria-hidden="true"></i>
       </div>
 
       <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
@@ -37,5 +38,6 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!unitsForm.form.valid">Continue</button>
+  <button type="button" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" (click)="addUnit()">Add unit</button>
+  <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!course.units.length > 0">Continue <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 </form>

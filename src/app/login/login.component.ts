@@ -1,31 +1,31 @@
 /**
  * Created by vladr on 19.12.2016.
  */
-import {Component} from '@angular/core';
-import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
-
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { Credentials } from '../models/Credentials';
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html'
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  username: string;
-  password: string;
+  public credentials = new Credentials('', '');
 
   constructor(private auth: AuthService, private router: Router) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     if (this.auth.loggedIn()) {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/');
     }
   }
 
-  onLogin() {
-    this.auth.login({'username': this.username, 'password': this.password});
+  public onLogin() {
+    console.log(this.credentials);
+    this.auth.login(this.credentials);
   }
 }

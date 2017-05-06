@@ -1,3 +1,5 @@
+import { Organisation } from './Organisation';
+import { Course } from './Course';
 /**
  * Created by vladr on 02.05.2017.
  */
@@ -9,11 +11,12 @@ export class User {
   public lastName: string;
   public info: string;
   public created: Date;
-  public organisation: any;
-  public roles: any;
-  public courses: any;
-  public progresses: any;
+  public organisation: Organisation;
+  public roles: any[];
+  public courses: Course[];
+  public progresses: any[];
 
-  constructor() {
+  constructor(roles) {
+    this.roles = roles;
   }
 }

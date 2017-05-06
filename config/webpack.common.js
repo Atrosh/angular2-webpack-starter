@@ -230,11 +230,7 @@ module.exports = function (options) {
         chunks: ['polyfills']
       }),
       // This enables tree shaking of the vendor modules
-      new CommonsChunkPlugin({
-        name: 'vendor',
-        chunks: ['main'],
-        minChunks: module => /node_modules/.test(module.resource)
-      }),
+
       // Specify the correct order the scripts will be injected in
       new CommonsChunkPlugin({
         name: ['polyfills', 'vendor'].reverse()
@@ -365,7 +361,8 @@ module.exports = function (options) {
       ),
       new webpack.ProvidePlugin({
         $: "jquery",
-        jQuery: "jquery"
+        jQuery: "jquery",
+        "window.jQuery": "jquery"
       }),
 
       new ngcWebpack.NgcWebpackPlugin({

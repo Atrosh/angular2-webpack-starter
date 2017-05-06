@@ -1,13 +1,8 @@
 /*
  * Angular 2 decorators and services
  */
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AppState } from './app.service';
-import {AuthService} from "./auth.service";
 
 /*
  * App Component
@@ -26,9 +21,8 @@ export class AppComponent implements OnInit {
   public name = 'Angular 2 Webpack Starter';
   public url = 'https://twitter.com/AngularClass';
 
-  constructor(
-    public appState: AppState
-  ) {}
+  constructor(public appState: AppState) {
+  }
 
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);

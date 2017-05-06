@@ -1,6 +1,8 @@
-import {AuthService} from "../auth.service";
-import {Component} from "@angular/core";
-import {ApiService} from "../api.service";
+import { AuthService } from '../auth.service';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { User } from '../models/User';
+import { Organisation } from '../models/Organisation';
 /**
  * Created by vladr on 21.12.2016.
  */
@@ -10,54 +12,56 @@ import {ApiService} from "../api.service";
   templateUrl: './admin.component.html'
 })
 
-export class AdminComponent {
+export class AdminComponent implements OnInit {
 
-  users = [];
-  roles = [];
-  organisations = [];
-  newUser = {username: "", password: "", firstName: "", lastName: "", info: "", roles: [{role:"ROLE_USER"}], organisation: {}};
+  private users: User[];
+  private roles = [];
+  private organisations: Organisation[];
+  private newUser = new User([{role: 'ROLE_USER'}]);
 
   constructor(private auth: AuthService, private api: ApiService) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.getAllUsers();
     this.getAllRoles();
     this.getAllOrganisations();
-
   }
 
-  getAllUsers() {
+  public getAllUsers() {
     this.api.getAllUsers().subscribe(
-      data => this.users = data,
-      error => console.log(error)
+      (data) => this.users = data,
+      (error) => console.log(error)
     );
   }
 
-  getAllRoles() {
+  public getAllRoles() {
     this.api.getRoles().subscribe(
-      data => this.roles = data,
-      error => console.log(error)
+      (data) => this.roles = data,
+      (error) => console.log(error)
     );
   }
 
-  getAllOrganisations() {
+  public getAllOrganisations() {
     this.api.getOrganisations().subscribe(
-      data => this.organisations = data,
-      error => console.log(error)
+      (data) => {
+        this.organisations = data;
+        this.newUser.organisation = this.organisations[0];
+      },
+      (error) => console.log(error)
     );
   }
 
-  createUser() {
+  public createUser() {
     this.api.createNewUser(this.newUser).subscribe(
-      data => this.users.push(data),
-      error => console.log(error)
+      (data) => this.users.push(data),
+      (error) => console.log(error)
     );
   }
 
-  deleteUser(id) {
+  public deleteUser(id) {
     this.api.deleteUser(id).subscribe();
-    this.users = this.users.filter(user => user.id != id);
+    this.users = this.users.filter((user) => user.id !== id);
   }
 
 }

@@ -1,5 +1,5 @@
-import {Course} from "./Course";
-import {Paragraph} from "./Paragraph";
+import { Course } from './Course';
+import { Paragraph } from './Paragraph';
 /**
  * Created by vladr on 02.05.2017.
  */
@@ -11,8 +11,9 @@ export class Unit {
   public created: Date;
   public updated: Date;
   public course: Course;
-  public paragraphs: Array<Paragraph>;
+  public paragraphs: Paragraph[];
 
-  constructor() {
+  constructor(serial) {
+    this.serial = serial;
   }
 }

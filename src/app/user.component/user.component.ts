@@ -1,6 +1,7 @@
-import {AuthService} from "../auth.service";
-import {Component} from '@angular/core';
-import {ApiService} from "../api.service";
+import { AuthService } from '../auth.service';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { User } from '../models/User';
 /**
  * Created by vladr on 21.12.2016.
  */
@@ -10,30 +11,29 @@ import {ApiService} from "../api.service";
   templateUrl: './user.component.html'
 })
 
-export class UserComponent {
+export class UserComponent implements OnInit {
 
-  user: any;
+  public user: User;
 
   constructor(private auth: AuthService, private api: ApiService) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.getCurrentUser();
   }
 
-  loggedIn() {
-    //this.getCurrentUser();
+  public loggedIn() {
     return this.auth.loggedIn();
   }
 
-  logout() {
+  public logout() {
     this.auth.logout();
   }
 
-  getCurrentUser() {
+  private getCurrentUser() {
     this.api.getCurrentUser().subscribe(
-      data => this.user = data,
-      error => console.log(error)
+      (data) => this.user = data,
+      (error) => console.log(error)
     );
   }
 

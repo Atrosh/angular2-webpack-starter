@@ -1,4 +1,5 @@
-import {Unit} from "./Unit";
+import { Unit } from './Unit';
+import { User } from './User';
 /**
  * Created by vladr on 02.05.2017.
  */
@@ -8,9 +9,9 @@ export class Course {
   public description: string;
   public open: boolean;
   public organisation: any;
-  public owners: Array<any>;
-  public units: Array<Unit>;
-  public lessons: Array<any>;
+  public owners: User[];
+  public units: Unit[];
+  public lessons: any[];
 
   constructor() {
     this.units = [];
