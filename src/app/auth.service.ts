@@ -45,7 +45,7 @@ export class AuthService implements OnInit {
   }
 
   public isAdmin() {
-    if (this.token !== undefined) {
+    if (this.loggedIn() && this.token !== undefined) {
       return this.token.scopes.indexOf('ROLE_ADMIN') > -1;
     }
     return false;
