@@ -1,5 +1,5 @@
-import {Unit} from "./Unit";
-import {Step} from "./Step";
+import { Unit } from './Unit';
+import { Step } from './Step';
 /**
  * Created by vladr on 02.05.2017.
  */
@@ -11,7 +11,7 @@ export class Paragraph {
   public created: Date;
   public updated: Date;
   public unit: Unit;
-  public steps: Array<Step>;
+  public steps: Step[];
 
   constructor() {
   }

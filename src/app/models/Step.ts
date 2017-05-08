@@ -1,4 +1,5 @@
-import {Paragraph} from "./Paragraph";
+import { Paragraph } from './Paragraph';
+import { Progress } from './Progress';
 /**
  * Created by vladr on 02.05.2017.
  */
@@ -10,7 +11,7 @@ export class Step {
   public created: Date;
   public updated: Date;
   public paragraph: Paragraph;
-  public progresses: Array<any>;
+  public progresses: Progress[];
 
   constructor() {
   }
