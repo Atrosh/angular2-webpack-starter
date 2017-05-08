@@ -1,26 +1,39 @@
 /**
  * Created by vladr on 19.12.2016.
  */
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { tokenNotExpired } from 'angular2-jwt';
+import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnInit {
+
+  public static decodeToken(token: string) {
+    let h = new JwtHelper();
+    return h.decodeToken(token);
+  }
 
   public redirectUrl: string = '/home';
-  private token: string;
+  private token: any;
 
   constructor(private http: Http, private router: Router, private api: ApiService) {
+  }
+
+  public ngOnInit() {
+    let token = localStorage.getItem('id_token');
+    if (token !== null) {
+      this.token = AuthService.decodeToken(token);
+    }
   }
 
   public login(credentials) {
     this.api.login(credentials).subscribe(
       (data) => {
         localStorage.setItem('id_token', data.token);
+        this.token = AuthService.decodeToken(data.token);
         this.router.navigateByUrl(this.redirectUrl);
       },
       (error) => console.log(error)
@@ -28,13 +41,20 @@ export class AuthService {
   }
 
   public logout() {
-    localStorage.removeItem('profile');
+    localStorage.removeItem('user');
     localStorage.removeItem('id_token');
     this.router.navigateByUrl('/login');
   }
 
   public loggedIn() {
     return tokenNotExpired();
+  }
+
+  public isAdmin() {
+    if (this.token !== undefined) {
+      return this.token.scopes.indexOf('ROLE_ADMIN') > -1;
+    }
+    return false;
   }
 
 }

@@ -1,8 +1,8 @@
 <script src="../today.component/today.component.ts"></script>
-<div class="card card-block" [hidden]="!loggedIn() || !user">
+<div class="card card-block" [hidden]="!loggedIn()">
   <h4 class="card-title">{{user?.firstName + " " + user?.lastName}}</h4>
   <p class="card-text">{{user?.info}}</p>
-  <button type="button" class="btn btn-primary" (click)="logout()">
+  <button type="button" class="btn btn-primary" (click)="auth.logout()">
     Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
   </button>
 </div>

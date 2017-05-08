@@ -15,24 +15,39 @@ export class UserComponent implements OnInit {
 
   public user: User;
 
-  constructor(private auth: AuthService, private api: ApiService) {
+  constructor(public auth: AuthService, private api: ApiService) {
   }
 
   public ngOnInit() {
-    this.getCurrentUser();
+    if (this.auth.loggedIn()) {
+      let user = localStorage.getItem('user');
+      if (user === null) {
+        this.getCurrentUser();
+      } else {
+        this.user = JSON.parse(user);
+      }
+    }
   }
 
   public loggedIn() {
-    return this.auth.loggedIn();
-  }
-
-  public logout() {
-    this.auth.logout();
+    if (this.auth.loggedIn()) {
+      let user = localStorage.getItem('user');
+      if (this.user === undefined) {
+        this.getCurrentUser();
+        return false;
+      } else {
+        return true;
+      }
+    }
+    return false;
   }
 
   private getCurrentUser() {
     this.api.getCurrentUser().subscribe(
-      (data) => this.user = data,
+      (data) => {
+        this.user = data;
+        localStorage.setItem('user', JSON.stringify(data));
+      },
       (error) => console.log(error)
     );
   }
