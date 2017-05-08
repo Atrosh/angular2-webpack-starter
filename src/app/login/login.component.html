@@ -1,15 +1,16 @@
 <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-<div class="form-group">
-  <label for="inputEmail">Login</label>
-  <input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-         placeholder="Enter login" [(ngModel)]="credentials.username" name="username" required>
-  <small id="emailHelp" class="form-text text-muted">Please, contact your teacher, if u have problems.</small>
-</div>
-<div class="form-group">
-  <label for="inputPassword">Password</label>
-  <input type="password" class="form-control" id="inputPassword" placeholder="Password"
-         [(ngModel)]="credentials.password" name="password" required>
-</div>
+  <div class="form-group">
+    <label for="inputEmail">Login</label>
+    <input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+           placeholder="Enter login" [(ngModel)]="credentials.username" name="username" required>
+    <small id="emailHelp" class="form-text text-muted">Please, contact your teacher, if u have problems.</small>
+  </div>
+  <div class="form-group" [class.has-danger]="error">
+    <label class="form-control-label" for="inputPassword">Password</label>
+    <input type="password" class="form-control" [class.form-control-danger]="error" id="inputPassword" placeholder="Password"
+           [(ngModel)]="credentials.password" name="password" required>
+    <div class="form-control-feedback">Wrong credentials</div>
+  </div>
   <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">
     Login <i class="fa fa-sign-in" aria-hidden="true"></i>
   </button>

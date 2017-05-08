@@ -29,15 +29,8 @@ export class AuthService implements OnInit {
     }
   }
 
-  public login(credentials) {
-    this.api.login(credentials).subscribe(
-      (data) => {
-        localStorage.setItem('id_token', data.token);
-        this.token = AuthService.decodeToken(data.token);
-        this.router.navigateByUrl(this.redirectUrl);
-      },
-      (error) => console.log(error)
-    );
+  public login(token: string) {
+    this.token = AuthService.decodeToken(token);
   }
 
   public logout() {
