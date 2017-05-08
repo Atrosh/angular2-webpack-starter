@@ -9,7 +9,7 @@
     <label class="form-control-label" for="inputPassword">Password</label>
     <input type="password" class="form-control" [class.form-control-danger]="error" id="inputPassword" placeholder="Password"
            [(ngModel)]="credentials.password" name="password" required>
-    <div class="form-control-feedback">Wrong credentials</div>
+    <div class="form-control-feedback" [hidden]="!error">Wrong credentials</div>
   </div>
   <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">
     Login <i class="fa fa-sign-in" aria-hidden="true"></i>

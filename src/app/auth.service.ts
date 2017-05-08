@@ -34,6 +34,7 @@ export class AuthService implements OnInit {
   }
 
   public logout() {
+    this.token = undefined;
     localStorage.removeItem('user');
     localStorage.removeItem('id_token');
     this.router.navigateByUrl('/login');
