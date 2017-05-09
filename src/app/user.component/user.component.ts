@@ -42,6 +42,11 @@ export class UserComponent implements OnInit {
     return false;
   }
 
+  public logOut() {
+    this.user = undefined;
+    this.auth.logout();
+  }
+
   private getCurrentUser() {
     this.api.getCurrentUser().subscribe(
       (data) => {

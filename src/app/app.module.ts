@@ -32,11 +32,12 @@ import { AdminComponent } from './admin.component/admin.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { CourseComponent } from './course.component/course.component';
 import { Ng2OrderModule } from 'ng2-order-pipe';
+import { AdminGuard } from './admin-guard.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState, AuthService, AuthGuard, ApiService
+  AppState, AuthService, AuthGuard, ApiService, AdminGuard
 ];
 
 type StoreType = {

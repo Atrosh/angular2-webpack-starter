@@ -1,7 +1,7 @@
 <div class="card card-block" *ngIf="loggedIn()">
   <h4 class="card-title">{{user?.firstName + " " + user?.lastName}}</h4>
   <p class="card-text">{{user?.info}}</p>
-  <button type="button" class="btn btn-primary" (click)="auth.logout()">
+  <button type="button" class="btn btn-primary" (click)="logOut()">
     Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
   </button>
 </div>
