@@ -41,7 +41,7 @@ export class AuthService implements OnInit {
   }
 
   public loggedIn() {
-    return tokenNotExpired();
+    return tokenNotExpired('id_token');
   }
 
   public isAdmin() {

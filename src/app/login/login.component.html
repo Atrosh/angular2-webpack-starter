@@ -1,9 +1,9 @@
 <form (ngSubmit)="onLogin()" #loginForm="ngForm">
   <div class="form-group">
-    <label for="inputEmail">Login</label>
+    <label for="inputEmail">Phone number</label>
     <input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-           placeholder="Enter login" [(ngModel)]="credentials.username" name="username" required>
-    <small id="emailHelp" class="form-text text-muted">Please, contact your teacher, if u have problems.</small>
+           placeholder="Enter phone number" [(ngModel)]="credentials.username" name="username" required>
+    <small id="emailHelp" class="form-text text-muted">Please, contact us, if you have any problems.</small>
   </div>
   <div class="form-group" [class.has-danger]="error">
     <label class="form-control-label" for="inputPassword">Password</label>

@@ -2,13 +2,6 @@
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" href="#userslist" role="tab" (click)="getAllUsers()">Users</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#organisations" role="tab" (click)="getAllOrganisations()"
-       *ngIf="auth.isAdmin()">Organisations</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#lessonslist" role="tab">Lessons</a>
-  </li>
 </ul>
 
 <!-- Tab panes -->
@@ -46,76 +39,6 @@
             data-target="#newUser">Add user
     </button>
   </div>
-  <!--Tab organisations list-->
-  <div class="tab-pane" id="organisations" role="tabpanel" *ngIf="auth.isAdmin()">
-    <h4>Organisations list</h4>
-    <table class="table table-striped table-sm">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Created</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody class="">
-      <tr *ngFor="let o of organisations">
-        <td>{{o.name}}</td>
-        <td>{{o.description}}</td>
-        <td>{{o.created | date: 'dd.MM.yy'}}</td>
-        <td>
-          <div class="align-middle">
-            <button type="button" class="close" aria-label="Close" (click)="deleteOrganisation(o.id)">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <button type="button" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" data-toggle="modal"
-            data-target="#newOrganisation">Add organisation
-    </button>
-  </div>
-  <!--Tab lesson-->
-  <div class="tab-pane" id="lessonslist" role="tabpanel">
-    <h4>Create lessons</h4>
-    <button type="button" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" data-toggle="modal"
-            data-target="#newLessons">Add lesson
-    </button>
-  </div>
-</div>
-
-<div class="modal fade" id="newOrganisation" tabindex="-1" role="dialog" aria-labelledby="newOrganisationLabel"
-     aria-hidden="true" *ngIf="auth.isAdmin()">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="newOrganisationLabel">Create new organisation</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form (ngSubmit)="createOrganisation(); organisationForm.reset()" #organisationForm="ngForm">
-          <div class="form-group">
-            <label for="oNameId">Organisation name</label>
-            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Name"
-                   [(ngModel)]="newOrganisation.name" name="oName" id="oNameId" required>
-            <label for="oDescriptionId">Organisation description</label>
-            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Description"
-                   [(ngModel)]="newOrganisation.description" name="oDescription" id="oDescriptionId">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!organisationForm.form.valid"
-                (click)="organisationForm.ngSubmit.emit()">Create
-        </button>
-      </div>
-    </div>
-  </div>
 </div>
 
 <div class="modal fade" id="newUser" tabindex="-1" role="dialog" aria-labelledby="newUserLabel" aria-hidden="true">
@@ -145,79 +68,12 @@
             <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Description"
                    [(ngModel)]="newUser.info" name="info">
           </div>
-          <div *ngIf="auth.isAdmin()" class="form-group form-inline">
-            <!--User roles-->
-            <select multiple size=1 [(ngModel)]="newUser.roles" name="userRoles"
-                    class="form-control mb-2 mr-sm-2 mb-sm-1">
-              <option *ngFor="let role of roles" [ngValue]="role">{{role.role}}</option>
-            </select>
-            <!--User organisation-->
-            <select [(ngModel)]="newUser.organisation" name="userOrganisation"
-                    class="form-control mb-2 mr-sm-2 mb-sm-1">
-              <option *ngFor="let o of organisations" [ngValue]="o">{{o.name}}</option>
-            </select>
-          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid"
                 (click)="userForm.ngSubmit.emit()">Create
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="newLessons" tabindex="-1" role="dialog" aria-labelledby="newLessonsLabel"
-     aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="newLessonsLabel">Create new lessons</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form (ngSubmit)="createLessons(); lessonsForm.reset()" #lessonsForm="ngForm">
-          <div class="form-inline">
-            <label for="since-date-input" class="mr-sm-2">Since</label>
-            <input class="form-control mb-2 mr-sm-2 mb-sm-1" type="date" name="since-date-input-name"
-                   id="since-date-input" [(ngModel)]="newLessons.since" required>
-            <label for="till-date-input" class="mr-sm-2">Till</label>
-            <input class="form-control mb-2 mr-sm-2 mb-sm-1" type="date" name="till-date-input-name"
-                   [(ngModel)]="newLessons.till" id="till-date-input" required>
-          </div>
-          <div class="form-inline">
-            <label for="time-input" class="mr-sm-2">Time</label>
-            <input class="form-control mb-2 mr-sm-2 mb-sm-1" type="time" name="time-input-name"
-                   [(ngModel)]="newLessons.time" id="time-input" required>
-          </div>
-          <div class="form-group">
-            <!--Courses-->
-            <label for="lessonCourseId" class="mr-sm-2">Course</label>
-            <select [(ngModel)]="newLessons.course" name="lessonCourse" id="lessonCourseId"
-                    class="form-control mb-2 mr-sm-2 mb-sm-1" required>
-              <option *ngFor="let c of courses" [ngValue]="c">{{c.name}}</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <!--Users-->
-            <label for="lessonUsersId" class="mr-sm-2">Users</label>
-            <select multiple size=5 [(ngModel)]="newLessons.users" name="lessonUsers" id="lessonUsersId"
-                    class="form-control mb-2 mr-sm-2 mb-sm-1" required>
-              <option *ngFor="let user of users | orderBy 'lastName'" [ngValue]="user">
-                {{user.firstName + ' ' + user.lastName}}
-              </option>
-            </select>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!lessonsForm.form.valid"
-                (click)="lessonsForm.ngSubmit.emit()">Create
         </button>
       </div>
     </div>

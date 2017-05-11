@@ -22,17 +22,8 @@ export class ApiService {
     return this.http.delete(this.API_URL + 'user/' + id, this.getRequestOptions());
   }
 
-  public deleteOrganisation(id) {
-    return this.http.delete(this.API_URL + 'organisation/' + id, this.getRequestOptions());
-  }
-
   public createNewUser(user) {
     return this.http.post(this.API_URL + 'user', user, this.getRequestOptions())
-      .map((res) => res.json());
-  }
-
-  public createNewCourse(course) {
-    return this.http.post(this.API_URL + 'course', course, this.getRequestOptions())
       .map((res) => res.json());
   }
 
@@ -46,38 +37,8 @@ export class ApiService {
       .map((res) => res.json());
   }
 
-  public getLessons() {
-    return this.http.get(this.API_URL + 'lessons', this.getRequestOptions())
-      .map((res) => res.json());
-  }
-
-  public getWeek() {
-    return this.http.get(this.API_URL + 'week', this.getRequestOptions())
-      .map((res) => res.json());
-  }
-
   public getRoles() {
     return this.http.get(this.API_URL + 'role', this.getRequestOptions())
-      .map((res) => res.json());
-  }
-
-  public getOrganisations() {
-    return this.http.get(this.API_URL + 'organisation', this.getRequestOptions())
-      .map((res) => res.json());
-  }
-
-  public getCourses() {
-    return this.http.get(this.API_URL + 'course', this.getRequestOptions())
-      .map((res) => res.json());
-  }
-
-  public createOrganisation(organisation) {
-    return this.http.post(this.API_URL + 'organisation', organisation, this.getRequestOptions())
-      .map((res) => res.json());
-  }
-
-  public createLessons(lessons) {
-    return this.http.post(this.API_URL + 'lesson', lessons, this.getRequestOptions())
       .map((res) => res.json());
   }
 

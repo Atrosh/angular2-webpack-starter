@@ -58,11 +58,8 @@ type StoreType = {
     LoginComponent,
     NoContentComponent,
     XLargeDirective,
-    TodayComponent,
     UserComponent,
-    WeekComponent,
     AdminComponent,
-    CourseComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,

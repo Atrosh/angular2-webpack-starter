@@ -10,12 +10,10 @@ export class User {
   public password: string;
   public firstName: string;
   public lastName: string;
+  public money: number;
   public info: string;
   public created: Date;
-  public organisation: Organisation;
   public roles: any[];
-  public courses: Course[];
-  public progresses: Progress[];
 
   constructor(roles) {
     this.roles = roles;

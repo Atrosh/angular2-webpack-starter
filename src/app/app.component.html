@@ -4,20 +4,14 @@
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" [routerLink]="['/']">Дневник</a>
+  <a class="navbar-brand" [routerLink]="['/']">Liberty</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item" *ngIf="auth.loggedIn()">
-      <a class="nav-link" [routerLink]="['/week']">Расписание</a>
-    </li>
-    <li class="nav-item" *ngIf="auth.loggedIn()">
-      <a class="nav-link" [routerLink]="['/course']">Создать курс</a>
-    </li>
     <li class="nav-item" *ngIf="auth.isAdmin()">
-      <a class="nav-link" [routerLink]="['/admin']">Управление</a>
+      <a class="nav-link" [routerLink]="['/admin']">Management</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/about']">Информация</a>
+      <a class="nav-link" [routerLink]="['/about']">About</a>
     </li>
   </ul>
   </div>
@@ -43,6 +37,6 @@
 <!--<pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>-->
 <footer class="bd-footer text-muted">
   <div class="container">
-    <span>Атрошкин В.А. гр.107322</span>
+    <span>Liberty.co</span>
   </div>
 </footer>
