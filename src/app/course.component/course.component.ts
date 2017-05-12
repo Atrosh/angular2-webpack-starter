@@ -7,6 +7,7 @@ import { ApiService } from '../api.service';
 import { Course } from '../models/Course';
 import { User } from '../models/User';
 import { Unit } from '../models/Unit';
+import { Router } from '@angular/router';
 /**
  * Created by vladr on 21.12.2016.
  */
@@ -22,7 +23,7 @@ export class CourseComponent implements OnInit {
   public course = new Course();
   public user = new User(null);
 
-  constructor(private auth: AuthService, private api: ApiService) {
+  constructor(private auth: AuthService, private api: ApiService, private router: Router) {
 
   }
 
@@ -38,13 +39,12 @@ export class CourseComponent implements OnInit {
 
   public createCourse() {
     this.api.createNewCourse(this.course).subscribe(
-      (data) => this.course = data,
+      (data) => {
+        this.course = data;
+        this.router.navigateByUrl('/edit-course/' + this.course.id);
+      },
       (error) => console.log(error)
     );
-  }
-
-  public addUnit() {
-    this.course.units.push(new Unit(this.course.units.length));
   }
 
 }

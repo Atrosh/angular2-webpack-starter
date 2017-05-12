@@ -13,7 +13,9 @@ export class Unit {
   public course: Course;
   public paragraphs: Paragraph[];
 
-  constructor(serial) {
+  constructor(serial, name, course) {
     this.serial = serial;
+    this.name = name;
+    this.course = course;
   }
 }

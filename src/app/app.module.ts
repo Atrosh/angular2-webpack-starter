@@ -33,6 +33,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { CourseComponent } from './course.component/course.component';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { AdminGuard } from './admin-guard.service';
+import { EditCourseComponent } from './edit-course.component/edit-course.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -63,6 +64,7 @@ type StoreType = {
     WeekComponent,
     AdminComponent,
     CourseComponent,
+    EditCourseComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

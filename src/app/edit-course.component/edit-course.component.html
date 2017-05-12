@@ -1,0 +1,38 @@
+<!--<div [froalaEditor] [(froalaModel)]="editorContent"></div>-->
+<!--<input [ngModel]="editorContent"/>-->
+<!--<input [(ngModel)]="editorContent"/>-->
+<form [hidden]="course.id == NaN" (ngSubmit)="createCourse()" #unitsForm="ngForm">
+  <h4>Edit course</h4>
+  <label for="lgFormGroupInput">Name</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" id="lgFormGroupInput" placeholder="Course name"
+         [(ngModel)]="course.name" name="editCourseName" required>
+  <label for="description">Course description</label>
+  <textarea class="form-control mb-2 mr-sm-2 mb-sm-1" id="description" rows="3"
+            [(ngModel)]="course.description" name="editCourseDescription"></textarea>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" name="editCoursePublic" [(ngModel)]="course.open">
+      Public course
+    </label>
+  </div>
+  <label for="lgFormGroupInput">Units</label>
+  <div class="card mb-2 mr-sm-2 mb-sm-1" *ngFor="let unit of units | orderBy 'serial'">
+    <div class="card-header">
+      <h5 class="card-title">{{unit.serial}} {{unit.name}}</h5>
+    </div>
+    <div class="card-block">
+      <h4 class="card-title">Name</h4>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  <div class="form-group form-inline">
+    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="New unit name"
+           [(ngModel)]="newUnitName" name="newUnitName">
+    <button type="button" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!newUnitName"
+            (click)="addUnit(newUnitName);newUnitName=''">Add unit
+    </button>
+    <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1"
+            [disabled]="!units.length > 0 || !unitsForm.form.valid">
+      Continue <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</form>

@@ -36,6 +36,26 @@ export class ApiService {
       .map((res) => res.json());
   }
 
+  public updateCourse(course) {
+    return this.http.put(this.API_URL + 'course', course, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public getCourse(id) {
+    return this.http.get(this.API_URL + 'course/' + id, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public getUnits(id) {
+    return this.http.get(this.API_URL + 'unit/' + id, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public saveUnits(units) {
+    return this.http.post(this.API_URL + 'unit', units, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
   public getCurrentUser() {
     return this.http.get(this.API_URL + 'me', this.getRequestOptions())
       .map((res) => res.json());
