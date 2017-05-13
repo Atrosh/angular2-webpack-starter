@@ -1,12 +1,8 @@
-/**
- * Created by vladr on 30.04.2017.
- */
 import { AuthService } from '../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Course } from '../models/Course';
 import { User } from '../models/User';
-import { Unit } from '../models/Unit';
 import { Router } from '@angular/router';
 /**
  * Created by vladr on 21.12.2016.
@@ -19,12 +15,10 @@ import { Router } from '@angular/router';
 
 export class CourseComponent implements OnInit {
 
-  public editorContent = 'Your text';
   public course = new Course();
   public user = new User(null);
 
   constructor(private auth: AuthService, private api: ApiService, private router: Router) {
-
   }
 
   public ngOnInit() {

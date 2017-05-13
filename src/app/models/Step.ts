@@ -13,6 +13,10 @@ export class Step {
   public paragraph: Paragraph;
   public progresses: Progress[];
 
-  constructor() {
+  constructor(serial, name, description, paragraph) {
+    this.serial = serial;
+    this.name = name;
+    this.description = description;
+    this.paragraph = paragraph;
   }
 }

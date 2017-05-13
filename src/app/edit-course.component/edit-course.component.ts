@@ -8,9 +8,6 @@ import { Course } from '../models/Course';
 import { User } from '../models/User';
 import { Unit } from '../models/Unit';
 import { ActivatedRoute } from '@angular/router';
-/**
- * Created by vladr on 21.12.2016.
- */
 
 @Component({
   selector: 'edit-course',
@@ -19,15 +16,12 @@ import { ActivatedRoute } from '@angular/router';
 
 export class EditCourseComponent implements OnInit {
 
-  public editorContent = 'Your text';
   public newUnitName: string;
-  public course = new Course();
-  public units: Unit[];
-  public user = new User(null);
+  public course: Course = new Course();
+  public units: Unit[] = [];
+  public user: User = new User(null);
 
   constructor(private auth: AuthService, private api: ApiService, private route: ActivatedRoute) {
-    this.units = [];
-
   }
 
   public ngOnInit() {
@@ -44,13 +38,32 @@ export class EditCourseComponent implements OnInit {
       (data) => {
         this.course = data;
         this.getUnits();
-        },
+      },
       (error) => console.log(error)
     );
   }
 
   public addUnit(name) {
     this.units.push(new Unit(this.units.length + 1, name, this.course));
+  }
+
+  public deleteUnit(deletedUnit: Unit) {
+    if (deletedUnit.id > 0) {
+      this.api.deleteUnit(deletedUnit.id).subscribe();
+    }
+    this.units = this.units.filter((unit) => unit !== deletedUnit);
+    this.reorderUnits();
+  }
+
+  private reorderUnits() {
+    let newUnits = [];
+    let i = 0;
+    this.units.forEach((unit) => {
+      i++;
+      unit.serial = i;
+      newUnits.push(unit);
+    });
+    this.units = newUnits;
   }
 
   private getUnits() {

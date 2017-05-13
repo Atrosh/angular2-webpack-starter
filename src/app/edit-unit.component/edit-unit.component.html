@@ -1,0 +1,28 @@
+<form *ngIf="unit.id > 0" (ngSubmit)="saveUnit()" #paragraphsForm="ngForm">
+  <h4>Edit unit</h4>
+  <label for="editUnitNameId">Name</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" id="editUnitNameId" placeholder="Unit name"
+         [(ngModel)]="unit.name" name="editUnitName" required>
+  <label>Paragraphs</label>
+  <div class="card mb-2 mr-sm-2 mb-sm-1" *ngFor="let p of paragraphs | orderBy: 'serial'">
+    <div class="card-header">
+      <button type="button" class="close" aria-label="Close" (click)="deleteParagraph(p)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h5 class="card-title">{{unit.serial}}.{{p.serial}} {{p.name}}</h5>
+    </div>
+    <div class="card-block" *ngIf="p.id">
+      <a class="btn btn-primary" [href]="'#/edit-paragraph/' + p.id" target="_blank" role="button">Edit</a>
+    </div>
+  </div>
+  <div class="form-group form-inline">
+    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="New unit name"
+           [(ngModel)]="newParagraphName" name="newUnitName">
+    <button type="button" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!newParagraphName"
+            (click)="addParagraph(newParagraphName);newParagraphName=''">Add unit
+    </button>
+    <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1"
+            [disabled]="!paragraphs.length > 0 || !paragraphsForm.form.valid">Save
+    </button>
+  </div>
+</form>

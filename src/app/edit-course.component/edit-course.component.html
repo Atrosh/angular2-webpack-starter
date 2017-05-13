@@ -1,10 +1,7 @@
-<!--<div [froalaEditor] [(froalaModel)]="editorContent"></div>-->
-<!--<input [ngModel]="editorContent"/>-->
-<!--<input [(ngModel)]="editorContent"/>-->
-<form [hidden]="course.id == NaN" (ngSubmit)="createCourse()" #unitsForm="ngForm">
+<form *ngIf="course.id > 0" (ngSubmit)="createCourse()" #unitsForm="ngForm">
   <h4>Edit course</h4>
-  <label for="lgFormGroupInput">Name</label>
-  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" id="lgFormGroupInput" placeholder="Course name"
+  <label for="editCourseNameId">Name</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" id="editCourseNameId" placeholder="Course name"
          [(ngModel)]="course.name" name="editCourseName" required>
   <label for="description">Course description</label>
   <textarea class="form-control mb-2 mr-sm-2 mb-sm-1" id="description" rows="3"
@@ -15,14 +12,16 @@
       Public course
     </label>
   </div>
-  <label for="lgFormGroupInput">Units</label>
-  <div class="card mb-2 mr-sm-2 mb-sm-1" *ngFor="let unit of units | orderBy 'serial'">
+  <label>Units</label>
+  <div class="card mb-2 mr-sm-2 mb-sm-1" *ngFor="let unit of units | orderBy: 'serial'">
     <div class="card-header">
+      <button type="button" class="close" aria-label="Close" (click)="deleteUnit(unit)">
+        <span aria-hidden="true">&times;</span>
+      </button>
       <h5 class="card-title">{{unit.serial}} {{unit.name}}</h5>
     </div>
-    <div class="card-block">
-      <h4 class="card-title">Name</h4>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card-block" *ngIf="unit.id">
+      <a class="btn btn-primary" [href]="'#/edit-unit/' + unit.id" target="_blank" role="button">Edit</a>
     </div>
   </div>
   <div class="form-group form-inline">
@@ -32,7 +31,7 @@
             (click)="addUnit(newUnitName);newUnitName=''">Add unit
     </button>
     <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1"
-            [disabled]="!units.length > 0 || !unitsForm.form.valid">
-      Continue <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            [disabled]="!units.length > 0 || !unitsForm.form.valid">Save
+    </button>
   </div>
 </form>

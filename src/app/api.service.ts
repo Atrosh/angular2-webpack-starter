@@ -22,6 +22,18 @@ export class ApiService {
     return this.http.delete(this.API_URL + 'user/' + id, this.getRequestOptions());
   }
 
+  public deleteUnit(id) {
+    return this.http.delete(this.API_URL + 'unit/' + id, this.getRequestOptions());
+  }
+
+  public deleteParagraph(id) {
+    return this.http.delete(this.API_URL + 'paragraph/' + id, this.getRequestOptions());
+  }
+
+  public deleteStep(id) {
+    return this.http.delete(this.API_URL + 'step/' + id, this.getRequestOptions());
+  }
+
   public deleteOrganisation(id) {
     return this.http.delete(this.API_URL + 'organisation/' + id, this.getRequestOptions());
   }
@@ -41,19 +53,66 @@ export class ApiService {
       .map((res) => res.json());
   }
 
+  public updateUnit(unit) {
+    return this.http.put(this.API_URL + 'unit', unit, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public updateParagraph(paragraph) {
+    return this.http.put(this.API_URL + 'paragraph', paragraph, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public getOrganisationCourses(id) {
+    return this.http.get(this.API_URL + 'course/organisation/' + id, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
   public getCourse(id) {
     return this.http.get(this.API_URL + 'course/' + id, this.getRequestOptions())
       .map((res) => res.json());
   }
 
-  public getUnits(id) {
+  public getUnit(id) {
     return this.http.get(this.API_URL + 'unit/' + id, this.getRequestOptions())
       .map((res) => res.json());
   }
 
-  public saveUnits(units) {
-    return this.http.post(this.API_URL + 'unit', units, this.getRequestOptions())
+  public getUnits(id) {
+    return this.http.get(this.API_URL + 'unit/course/' + id, this.getRequestOptions())
       .map((res) => res.json());
+  }
+
+  public getParagraph(id) {
+    return this.http.get(this.API_URL + 'paragraph/' + id, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public getParagraphs(id) {
+    return this.http.get(this.API_URL + 'paragraph/unit/' + id, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public getStep(id) {
+    return this.http.get(this.API_URL + 'step/' + id, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public getSteps(id) {
+    return this.http.get(this.API_URL + 'step/paragraph/' + id, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public saveUnits(units) {
+    return this.http.post(this.API_URL + 'unit', units, this.getRequestOptions());
+  }
+
+  public saveSteps(steps) {
+    return this.http.post(this.API_URL + 'step', steps, this.getRequestOptions());
+  }
+
+  public saveParagraphs(units) {
+    return this.http.post(this.API_URL + 'paragraph', units, this.getRequestOptions());
   }
 
   public getCurrentUser() {

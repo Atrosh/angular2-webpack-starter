@@ -10,6 +10,8 @@ import { CourseComponent } from './course.component/course.component';
 import { TodayComponent } from './today.component/today.component';
 import { AdminGuard } from './admin-guard.service';
 import { EditCourseComponent } from './edit-course.component/edit-course.component';
+import { EditUnitComponent } from './edit-unit.component/edit-unit.component';
+import { EditParagraphComponent } from './edit-paragraph.component/edit-paragraph.component';
 
 export const ROUTES: Routes = [
   {path: '', component: TodayComponent, canActivate: [AuthGuard]},
@@ -18,6 +20,8 @@ export const ROUTES: Routes = [
   {path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
   {path: 'course', component: CourseComponent, canActivate: [AuthGuard]},
   {path: 'edit-course/:id', component: EditCourseComponent, canActivate: [AuthGuard]},
+  {path: 'edit-unit/:id', component: EditUnitComponent, canActivate: [AuthGuard]},
+  {path: 'edit-paragraph/:id', component: EditParagraphComponent, canActivate: [AuthGuard]},
   {path: 'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
   {path: 'detail', loadChildren: './+detail#DetailModule'},

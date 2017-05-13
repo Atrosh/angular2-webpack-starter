@@ -1,0 +1,28 @@
+<!--<div [froalaEditor] [(froalaModel)]="editorContent"></div>-->
+<!--<input [ngModel]="editorContent"/>-->
+<!--<input [(ngModel)]="editorContent"/>-->
+<form *ngIf="paragraph.id > 0" (ngSubmit)="saveParagraph()" #stepsForm="ngForm">
+  <h4>Edit paragraph</h4>
+  <label for="editParagraphNameId">Name</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" id="editParagraphNameId" placeholder="Paragraph name"
+         [(ngModel)]="paragraph.name" name="editParagraphName" required>
+  <label>Steps</label>
+  <div class="card mb-2 mr-sm-2 mb-sm-1" *ngFor="let step of steps | orderBy: 'serial'">
+    <div class="card-header">
+      <button type="button" class="close" aria-label="Close" (click)="deleteStep(step)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h5 class="card-title">{{paragraph.serial}}.{{step.serial}} {{step.name}}</h5>
+    </div>
+  </div>
+  <div class="form-group form-inline">
+    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="New step name"
+           [(ngModel)]="newStepName" name="newStepName">
+    <button type="button" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!newStepName"
+            (click)="addStep(newStepName);newStepName=''">Add step
+    </button>
+    <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1"
+            [disabled]="!steps.length > 0 || !stepsForm.form.valid">Save
+    </button>
+  </div>
+</form>

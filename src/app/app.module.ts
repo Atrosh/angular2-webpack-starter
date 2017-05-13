@@ -34,6 +34,8 @@ import { CourseComponent } from './course.component/course.component';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { AdminGuard } from './admin-guard.service';
 import { EditCourseComponent } from './edit-course.component/edit-course.component';
+import { EditUnitComponent } from './edit-unit.component/edit-unit.component';
+import { EditParagraphComponent } from './edit-paragraph.component/edit-paragraph.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -64,7 +66,9 @@ type StoreType = {
     WeekComponent,
     AdminComponent,
     CourseComponent,
-    EditCourseComponent
+    EditCourseComponent,
+    EditUnitComponent,
+    EditParagraphComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

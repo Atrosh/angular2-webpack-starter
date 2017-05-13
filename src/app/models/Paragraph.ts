@@ -13,6 +13,10 @@ export class Paragraph {
   public unit: Unit;
   public steps: Step[];
 
-  constructor() {
+  constructor(serial, name, unit) {
+    this.steps = [];
+    this.serial = serial;
+    this.name = name;
+    this.unit = unit;
   }
 }
