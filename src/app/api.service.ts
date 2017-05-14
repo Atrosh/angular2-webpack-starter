@@ -22,6 +22,10 @@ export class ApiService {
     return this.http.delete(this.API_URL + 'user/' + id, this.getRequestOptions());
   }
 
+  public deleteCourse(id) {
+    return this.http.delete(this.API_URL + 'course/' + id, this.getRequestOptions());
+  }
+
   public deleteUnit(id) {
     return this.http.delete(this.API_URL + 'unit/' + id, this.getRequestOptions());
   }

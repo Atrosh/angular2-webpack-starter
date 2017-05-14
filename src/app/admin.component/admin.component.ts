@@ -83,6 +83,11 @@ export class AdminComponent implements OnInit {
     this.users = this.users.filter((user) => user.id !== id);
   }
 
+  public deleteCourse(id) {
+    this.api.deleteCourse(id).subscribe();
+    this.courses = this.courses.filter((course) => course.id !== id);
+  }
+
   public createOrganisation() {
     this.api.createOrganisation(this.newOrganisation).subscribe(
       (data) => this.organisations.push(data),
