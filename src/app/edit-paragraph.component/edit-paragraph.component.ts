@@ -15,8 +15,7 @@ import { Paragraph } from '../models/Paragraph';
 
 export class EditParagraphComponent implements OnInit {
 
-  public editorContent = 'Your text';
-  public newStepName: string;
+  public editStep: Step = new Step(null, null);
   public paragraph: Paragraph = new Paragraph(null, null, null);
   public steps: Step[] = [];
 
@@ -42,8 +41,9 @@ export class EditParagraphComponent implements OnInit {
     );
   }
 
-  public addStep(name, content) {
-    this.steps.push(new Step(this.steps.length + 1, name, content, this.paragraph));
+  public addStep() {
+    this.editStep = new Step(this.steps.length + 1, this.paragraph);
+    this.steps.push(this.editStep);
   }
 
   public deleteStep(deletedStep: Step) {
@@ -51,6 +51,7 @@ export class EditParagraphComponent implements OnInit {
       this.api.deleteStep(deletedStep.id).subscribe();
     }
     this.steps = this.steps.filter((step) => step !== deletedStep);
+    this.editStep = new Step(null, null);
     this.reorderSteps();
   }
 

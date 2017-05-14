@@ -1,25 +1,34 @@
-<!--<div [froalaEditor] [(froalaModel)]="editorContent"></div>-->
-<!--<input [ngModel]="editorContent"/>-->
-<!--<input [(ngModel)]="editorContent"/>-->
-<form *ngIf="paragraph.id > 0" (ngSubmit)="saveParagraph()" #stepsForm="ngForm">
+<form *ngIf="paragraph.id > 0" (ngSubmit)="saveParagraph()" #stepsForm="ngForm" class="col-sm-12">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a target="_blank" [href]="'#/edit-course/' + paragraph.unit.course.id">
+      {{paragraph.unit.course.name}}</a></li>
+    <li class="breadcrumb-item"><a target="_blank" [href]="'#/edit-unit/' + paragraph.unit.id">
+      {{paragraph.unit.serial}} {{paragraph.unit.name}}</a></li>
+    <li class="breadcrumb-item active">{{paragraph.serial}} {{paragraph.name}}</li>
+  </ol>
   <h4>Edit paragraph</h4>
   <label for="editParagraphNameId">Name</label>
-  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" id="editParagraphNameId" placeholder="Paragraph name"
-         [(ngModel)]="paragraph.name" name="editParagraphName" required>
-  <label>Steps</label>
-  <div class="card mb-2 mr-sm-2 mb-sm-1" *ngFor="let step of steps | orderBy: 'serial'">
-    <div class="card-header">
-      <button type="button" class="close" aria-label="Close" (click)="deleteStep(step)">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h5 class="card-title">{{paragraph.serial}}.{{step.serial}} {{step.name}}</h5>
-    </div>
+  <div class="input-group">
+    <span class="input-group-addon" id="btnGroupAddon">{{paragraph.unit.serial}}.{{paragraph.serial}}</span>
+    <input type="text" class="form-control" id="editParagraphNameId" placeholder="Paragraph name"
+           [(ngModel)]="paragraph.name" name="editParagraphName" required>
   </div>
+  <label>Steps</label>
+  <div>
+    <span *ngFor="let step of steps | orderBy: 'serial'">
+        <button type="button" class="btn mb-2 mr-sm-2 mb-sm-1" (click)="editStep = step"
+                [class.btn-primary]="editStep.serial == step.serial"
+                [class.btn-secondary]="editStep.serial != step.serial">{{step.serial}}</button>
+    </span>
+    <button type="button" class="btn btn-info mb-2 mr-sm-2 mb-sm-1" (click)="addStep()">
+      <i class="fa fa-plus" aria-hidden="true"></i></button>
+  </div>
+  <div *ngIf="editStep.serial > 0" [froalaEditor] [(froalaModel)]="editStep.description"
+       class="mb-2 mr-sm-2 mb-sm-1"></div>
   <div class="form-group form-inline">
-    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="New step name"
-           [(ngModel)]="newStepName" name="newStepName">
-    <button type="button" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!newStepName"
-            (click)="addStep(newStepName);newStepName=''">Add step
+    <button type="button" class="btn btn-danger mb-2 mr-sm-2 mb-sm-1"
+            [disabled]="!editStep.serial > 0" (click)="deleteStep(editStep)">
+      Delete step
     </button>
     <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1"
             [disabled]="!steps.length > 0 || !stepsForm.form.valid">Save
