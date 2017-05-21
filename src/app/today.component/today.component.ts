@@ -2,8 +2,8 @@
  * Created by vladr on 20.12.2016.
  */
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ApiService } from '../api.service';
+import { Lesson } from '../models/Lesson';
 
 @Component({
   selector: 'today',
@@ -12,7 +12,7 @@ import { ApiService } from '../api.service';
 
 export class TodayComponent implements OnInit {
 
-  private lessons: Observable<any>;
+  public lessons: Lesson[] = [];
 
   constructor(private api: ApiService) {
   }

@@ -5,14 +5,14 @@ import { User } from './User';
  */
 export class LessonDto {
   public users: User[];
-  public time: Date;
-  public since: Date;
-  public till: Date;
+  public since: string;
+  public till: string;
   public course: Course;
+  public dayOfWeek: number;
 
   constructor() {
-    this.since = new Date();
-    this.till = new Date();
-    this.time = new Date();
+    this.dayOfWeek = 2;
+    this.since = new Date().toDateString();
+    this.till = new Date().toDateString();
   }
 }

@@ -22,13 +22,13 @@ export class AdminComponent implements OnInit {
   public courses: Course[];
   public newUser = new User([{role: 'ROLE_USER'}]);
   public newOrganisation = new Organisation();
-  public newLessons: LessonDto;
+  public newLessons: LessonDto = new LessonDto();
+  public time: string = '12:00';
 
   constructor(public auth: AuthService, private api: ApiService) {
   }
 
   public ngOnInit() {
-    this.initLessonDto();
     this.getAllUsers();
     this.getAllRoles();
     this.getAllCourses();
@@ -102,15 +102,13 @@ export class AdminComponent implements OnInit {
   }
 
   public createLessons() {
+    let tmp = this.newLessons.since;
+    this.newLessons.since = this.newLessons.since + 'T' + this.time + ':00Z';
     this.api.createLessons(this.newLessons).subscribe(
       (data) => console.log(data),
       (error) => console.log(error)
     );
-    this.initLessonDto();
-  }
-
-  private initLessonDto() {
-    this.newLessons = new LessonDto();
+    this.newLessons.since = tmp;
   }
 
 }

@@ -1,4 +1,3 @@
-import { AuthService } from '../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
@@ -16,7 +15,7 @@ export class WeekComponent implements OnInit {
   public days: Observable<any>;
   public day: any;
 
-  constructor(private auth: AuthService, private api: ApiService) {
+  constructor(private api: ApiService) {
   }
 
   public ngOnInit() {

@@ -30,7 +30,7 @@
       </tr>
       </thead>
       <tbody class="">
-      <tr *ngFor="let u of users">
+      <tr *ngFor="let u of users | orderBy: 'id'">
         <td>{{u.username}}</td>
         <td>{{u.firstName}}</td>
         <td>{{u.lastName}}</td>
@@ -96,12 +96,14 @@
         <th>Name</th>
         <th>Organisation</th>
         <th></th>
+        <th></th>
       </tr>
       </thead>
       <tbody class="">
       <tr *ngFor="let c of courses">
-        <td>{{c.name}}</td>
+        <td><a [href]="'#/course-info/' + c.id" target="_blank">{{c.name}}</a></td>
         <td>{{c.organisation.name}}</td>
+        <td><a [href]="'#/edit-course/' + c.id" target="_blank"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
         <td>
           <div class="align-middle">
             <button type="button" class="close" aria-label="Close" (click)="deleteCourse(c.id)">
@@ -210,7 +212,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="createLessons(); lessonsForm.reset()" #lessonsForm="ngForm">
+        <form #lessonsForm="ngForm">
           <div class="form-inline">
             <label for="since-date-input" class="mr-sm-2">Since</label>
             <input class="form-control mb-2 mr-sm-2 mb-sm-1" type="date" name="since-date-input-name"
@@ -222,7 +224,18 @@
           <div class="form-inline">
             <label for="time-input" class="mr-sm-2">Time</label>
             <input class="form-control mb-2 mr-sm-2 mb-sm-1" type="time" name="time-input-name"
-                   [(ngModel)]="newLessons.time" id="time-input" required>
+                   [(ngModel)]="time" id="time-input" required>
+            <label for="lessonDayId" class="mr-sm-2">Day</label>
+            <select [(ngModel)]="newLessons.dayOfWeek" name="lessonDay" id="lessonDayId"
+                    class="form-control mb-2 mr-sm-2 mb-sm-1" required>
+              <option [ngValue]="2">Monday</option>
+              <option [ngValue]="3">Tuesday</option>
+              <option [ngValue]="4">Wednesday</option>
+              <option [ngValue]="5">Thursday</option>
+              <option [ngValue]="6">Friday</option>
+              <option [ngValue]="7">Saturday</option>
+              <option [ngValue]="1">Sunday</option>
+            </select>
           </div>
           <div class="form-group">
             <!--Courses-->
@@ -246,8 +259,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!lessonsForm.form.valid"
-                (click)="lessonsForm.ngSubmit.emit()">Create
+        <button type="button" class="btn btn-primary" [disabled]="!lessonsForm.form.valid"
+                (click)="createLessons()">Create
         </button>
       </div>
     </div>

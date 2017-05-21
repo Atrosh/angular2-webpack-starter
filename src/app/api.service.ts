@@ -145,12 +145,12 @@ export class ApiService {
   }
 
   public getLessons() {
-    return this.http.get(this.API_URL + 'lessons', this.getRequestOptions())
+    return this.http.get(this.API_URL + 'lesson/today', this.getRequestOptions())
       .map((res) => res.json());
   }
 
   public getWeek() {
-    return this.http.get(this.API_URL + 'week', this.getRequestOptions())
+    return this.http.get(this.API_URL + 'lesson/week', this.getRequestOptions())
       .map((res) => res.json());
   }
 

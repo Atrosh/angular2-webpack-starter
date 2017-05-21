@@ -1,7 +1,14 @@
-<h5>Сегодня:</h5>
-<div class="list-group">
-  <a *ngFor="let l of lessons" class="list-group-item list-group-item-action">
-    <h5 class="list-group-item-heading"> {{l?.date | date: 'HH:mm'}}, {{l?.course?.name}}, {{l?.info}}</h5>
-    <p class="list-group-item-text">{{l?.task}}</p>
-  </a>
+<div *ngIf="lessons.length > 0; else noLessons">
+  <h5>Today:</h5>
+  <div class="list-group">
+    <a *ngFor="let l of lessons | orderBy: 'date'" class="list-group-item list-group-item-action">
+      <h5 class="list-group-item-heading"> {{l.date | date: 'HH:mm'}}, <a [href]="'#/course-info/' + l.course.id" target="_blank">{{l.course.name}}</a>, {{l.info}}</h5>
+      <p class="list-group-item-text">{{l.task}}</p>
+    </a>
+  </div>
 </div>
+<ng-template #noLessons>
+  <h5>
+    No lessons for today...
+  </h5>
+</ng-template>
