@@ -1,18 +1,30 @@
-<form (ngSubmit)="createCourse(); courseForm.reset()" #courseForm="ngForm">
-  <h4>Create new course</h4>
-  <label for="name">Course name</label>
-  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Course name"
-         [(ngModel)]="course.name" name="name" id="name" required>
-  <label for="description">Course description</label>
-  <textarea class="form-control mb-2 mr-sm-2 mb-sm-1" id="description" rows="3"
-            [(ngModel)]="course.description" name="description"></textarea>
-  <div class="form-check">
-    <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" name="public" [(ngModel)]="course.open">
-      Public course
-    </label>
+<div *ngIf="course.id > 0; else courseNotEnable">
+  <h5>{{course.name}}</h5>
+  <div *ngIf="currentStep; else courseNotEnable">
+    <h6>{{currentStep.paragraph.unit.serial}} {{currentStep.paragraph.unit.name}} /
+      {{currentStep.paragraph.serial}} {{currentStep.paragraph.name}}</h6>
+    <button class="btn btn-outline-primary mb-2 mr-sm-2 mb-sm-1 pull-left" [disabled]="!hasPrevious()"
+            (click)="getPrevious()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+    <button class="btn btn-outline-primary mb-2 mr-sm-2 mb-sm-1 pull-right" [disabled]="!hasNext()" (click)="getNext()">
+      <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+    <span *ngFor="let step of steps">
+        <button type="button" class="btn mb-2 mr-sm-2 mb-sm-1" (click)="currentStep = step"
+                *ngIf="currentStep.paragraph.id === step.paragraph.id"
+                [class.btn-primary]="currentStep === step"
+                [class.btn-outline-primary]="isPassed(step) && currentStep !== step"
+                [class.btn-secondary]="!isPassed(step) && currentStep !== step">{{step.serial}}</button>
+    </span>
+    <div class="card card-block mb-2 mr-sm-2 mb-sm-1">
+      <div [innerHTML]="currentStep.description"></div>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!courseForm.form.valid">Continue <i
-    class="fa fa-arrow-right" aria-hidden="true"></i></button>
-</form>
-
+  <div [hidden]="!isFinished()" class="alert alert-success" role="alert">
+    <strong>Well done!</strong> You successfully finished course.
+  </div>
+</div>
+<ng-template #courseNotEnable>
+  <h5>
+    Not found
+  </h5>
+</ng-template>

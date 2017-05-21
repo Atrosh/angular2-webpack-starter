@@ -11,7 +11,7 @@
       <a class="nav-link" [routerLink]="['/week']">Расписание</a>
     </li>
     <li class="nav-item" *ngIf="auth.loggedIn()">
-      <a class="nav-link" [routerLink]="['/course']">Создать курс</a>
+      <a class="nav-link" [routerLink]="['/new-course']">Создать курс</a>
     </li>
     <li class="nav-item" *ngIf="auth.isAdmin()">
       <a class="nav-link" [routerLink]="['/admin']">Управление</a>

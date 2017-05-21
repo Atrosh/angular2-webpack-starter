@@ -10,6 +10,8 @@ export class Progress {
   public user: User;
   public step: Step;
 
-  constructor() {
+  constructor(step) {
+    this.passed = true;
+    this.step = step;
   }
 }

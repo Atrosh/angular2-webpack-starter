@@ -52,6 +52,33 @@ export class ApiService {
       .map((res) => res.json());
   }
 
+  public createOrganisation(organisation) {
+    return this.http.post(this.API_URL + 'organisation', organisation, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public createLessons(lessons) {
+    return this.http.post(this.API_URL + 'lesson', lessons, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public saveUnits(units) {
+    return this.http.post(this.API_URL + 'unit', units, this.getRequestOptions());
+  }
+
+  public saveSteps(steps) {
+    return this.http.post(this.API_URL + 'step', steps, this.getRequestOptions());
+  }
+
+  public saveParagraphs(units) {
+    return this.http.post(this.API_URL + 'paragraph', units, this.getRequestOptions());
+  }
+
+  public saveProgress(progress) {
+    return this.http.post(this.API_URL + 'progress', progress, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
   public updateCourse(course) {
     return this.http.put(this.API_URL + 'course', course, this.getRequestOptions())
       .map((res) => res.json());
@@ -107,18 +134,6 @@ export class ApiService {
       .map((res) => res.json());
   }
 
-  public saveUnits(units) {
-    return this.http.post(this.API_URL + 'unit', units, this.getRequestOptions());
-  }
-
-  public saveSteps(steps) {
-    return this.http.post(this.API_URL + 'step', steps, this.getRequestOptions());
-  }
-
-  public saveParagraphs(units) {
-    return this.http.post(this.API_URL + 'paragraph', units, this.getRequestOptions());
-  }
-
   public getCurrentUser() {
     return this.http.get(this.API_URL + 'me', this.getRequestOptions())
       .map((res) => res.json());
@@ -154,13 +169,23 @@ export class ApiService {
       .map((res) => res.json());
   }
 
-  public createOrganisation(organisation) {
-    return this.http.post(this.API_URL + 'organisation', organisation, this.getRequestOptions())
+  public getCourseSteps(courseId) {
+    return this.http.get(this.API_URL + 'step/course/' + courseId, this.getRequestOptions())
       .map((res) => res.json());
   }
 
-  public createLessons(lessons) {
-    return this.http.post(this.API_URL + 'lesson', lessons, this.getRequestOptions())
+  public getCourseProgress(courseId) {
+    return this.http.get(this.API_URL + 'progress/course/' + courseId, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public getCourseStepCount(courseId) {
+    return this.http.get(this.API_URL + 'step/count/course/' + courseId, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public getCourseProgressCount(id) {
+    return this.http.get(this.API_URL + 'progress/count/course/' + id, this.getRequestOptions())
       .map((res) => res.json());
   }
 

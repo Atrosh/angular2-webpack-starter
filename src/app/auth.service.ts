@@ -51,4 +51,11 @@ export class AuthService implements OnInit {
     return false;
   }
 
+  public isModer() {
+    if (this.loggedIn() && this.token !== undefined) {
+      return this.token.scopes.indexOf('ROLE_MODERATOR') > -1;
+    }
+    return false;
+  }
+
 }

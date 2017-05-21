@@ -36,6 +36,10 @@ import { AdminGuard } from './admin-guard.service';
 import { EditCourseComponent } from './edit-course.component/edit-course.component';
 import { EditUnitComponent } from './edit-unit.component/edit-unit.component';
 import { EditParagraphComponent } from './edit-paragraph.component/edit-paragraph.component';
+import { NewCourseComponent } from './new-course.component/new-course.component';
+import { UnitDetailsComponent } from './unit-details.component/unit-details.component';
+import { CourseInfoComponent } from './course-info.component/course-info.component';
+import { ParagraphDetailsComponent } from './prgraph-details.component/prgraph-details.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -66,9 +70,13 @@ type StoreType = {
     WeekComponent,
     AdminComponent,
     CourseComponent,
+    CourseInfoComponent,
+    NewCourseComponent,
     EditCourseComponent,
     EditUnitComponent,
-    EditParagraphComponent
+    EditParagraphComponent,
+    UnitDetailsComponent,
+    ParagraphDetailsComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

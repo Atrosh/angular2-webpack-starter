@@ -21,6 +21,7 @@
       <h5 class="card-title">{{unit.serial}} {{unit.name}}</h5>
     </div>
     <div class="card-block" *ngIf="unit.id">
+      <unit-details [unit]="unit"></unit-details>
       <a class="btn btn-primary" [href]="'#/edit-unit/' + unit.id" target="_blank" role="button">Edit</a>
     </div>
   </div>

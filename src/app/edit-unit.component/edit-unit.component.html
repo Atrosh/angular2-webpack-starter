@@ -21,6 +21,7 @@
       <h5 class="card-title">{{unit.serial}}.{{p.serial}} {{p.name}}</h5>
     </div>
     <div class="card-block" *ngIf="p.id">
+      <paragraph-details [paragraph]="p"></paragraph-details>
       <a class="btn btn-primary" [href]="'#/edit-paragraph/' + p.id" target="_blank" role="button">Edit</a>
     </div>
   </div>
@@ -28,7 +29,7 @@
     <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="New unit name"
            [(ngModel)]="newParagraphName" name="newUnitName">
     <button type="button" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!newParagraphName"
-            (click)="addParagraph(newParagraphName);newParagraphName=''">Add unit
+            (click)="addParagraph(newParagraphName);newParagraphName=''">Add paragraph
     </button>
     <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1"
             [disabled]="!paragraphs.length > 0 || !paragraphsForm.form.valid">Save

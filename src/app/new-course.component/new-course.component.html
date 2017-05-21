@@ -1,0 +1,24 @@
+<form *ngIf="auth.isAdmin() || auth.isModer(); else noPermisions"
+      (ngSubmit)="createCourse(); courseForm.reset()" #courseForm="ngForm">
+  <h4>Create new course</h4>
+  <label for="newCourseNameId">Course name</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Course name"
+         [(ngModel)]="course.name" name="newCourseName" id="newCourseNameId" required>
+  <label for="newCourseDescriptionId">Course description</label>
+  <textarea class="form-control mb-2 mr-sm-2 mb-sm-1" id="newCourseDescriptionId" rows="3"
+            [(ngModel)]="course.description" name="newCourseDescription"></textarea>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" name="newCoursePublic" [(ngModel)]="course.open">
+      Public course
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!courseForm.form.valid">
+    Continue <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+</form>
+<ng-template #noPermisions>
+  <h5>
+    Not found
+  </h5>
+</ng-template>
+
