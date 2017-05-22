@@ -17,15 +17,12 @@ import { Course } from '../models/Course';
 export class AdminComponent implements OnInit {
 
   public users: User[];
-  public roles = [];
-  public newUser = new User([{role: 'ROLE_USER'}]);
 
   constructor(public auth: AuthService, private api: ApiService) {
   }
 
   public ngOnInit() {
     this.getAllUsers();
-    this.getAllRoles();
   }
 
   public getAllUsers() {
@@ -33,21 +30,6 @@ export class AdminComponent implements OnInit {
       (data) => this.users = data,
       (error) => console.log(error)
     );
-  }
-
-  public getAllRoles() {
-    this.api.getRoles().subscribe(
-      (data) => this.roles = data,
-      (error) => console.log(error)
-    );
-  }
-
-  public createUser() {
-    this.api.createNewUser(this.newUser).subscribe(
-      (data) => this.users.push(data),
-      (error) => console.log(error)
-    );
-    this.newUser = new User([{role: 'ROLE_USER'}]);
   }
 
   public deleteUser(id) {

@@ -23,7 +23,7 @@ export class ApiService {
   }
 
   public createNewUser(user) {
-    return this.http.post(this.API_URL + 'user', user, this.getRequestOptions())
+    return this.http.post(this.API_URL + 'auth/registration/', user, this.getRequestOptions())
       .map((res) => res.json());
   }
 

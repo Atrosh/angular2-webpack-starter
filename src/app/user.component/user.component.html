@@ -1,5 +1,6 @@
 <div class="card card-block" *ngIf="loggedIn()">
   <h4 class="card-title">{{user?.firstName + " " + user?.lastName}}</h4>
+  <p class="card-text text-muted">{{user?.username}}</p>
   <p class="card-text">${{user?.money}}</p>
 
   <button type="button" class="btn btn-primary" (click)="logOut()">

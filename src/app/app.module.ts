@@ -33,6 +33,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { CourseComponent } from './course.component/course.component';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { AdminGuard } from './admin-guard.service';
+import { RegistrationComponent } from './registration.component/registration.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -60,6 +61,7 @@ type StoreType = {
     XLargeDirective,
     UserComponent,
     AdminComponent,
+    RegistrationComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

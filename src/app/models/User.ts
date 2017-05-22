@@ -15,7 +15,6 @@ export class User {
   public created: Date;
   public roles: any[];
 
-  constructor(roles) {
-    this.roles = roles;
+  constructor() {
   }
 }

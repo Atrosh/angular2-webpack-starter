@@ -9,11 +9,13 @@ import { AdminComponent } from './admin.component/admin.component';
 import { CourseComponent } from './course.component/course.component';
 import { TodayComponent } from './today.component/today.component';
 import { AdminGuard } from './admin-guard.service';
+import { RegistrationComponent } from './registration.component/registration.component';
 
 export const ROUTES: Routes = [
   {path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
   {path: 'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegistrationComponent},
   {path: 'detail', loadChildren: './+detail#DetailModule'},
   {path: 'barrel', loadChildren: './+barrel#BarrelModule'},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},

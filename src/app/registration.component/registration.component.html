@@ -1,0 +1,27 @@
+<form #userForm="ngForm" class="col-10">
+  <label>Phone number</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Phone number"
+         [(ngModel)]="newUser.username" name="username" required>
+  <label>Password</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Password"
+         [(ngModel)]="newUser.password" name="password" required>
+  <label>Confirm password</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Password"
+         [(ngModel)]="confirmPassword" name="password" required>
+  <label>First name</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="First name"
+         [(ngModel)]="newUser.firstName" name="firstName">
+  <label>Last name</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Last name"
+         [(ngModel)]="newUser.lastName" name="lastName">
+  <label>About</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="About"
+         [(ngModel)]="newUser.info" name="info">
+
+  <button type="button" (click)="createUser()" class="btn btn-primary"
+          [disabled]="!userForm.form.valid || confirmPassword !== newUser.password">
+    Register <i class="fa fa-sign-in" aria-hidden="true"></i>
+  </button>
+  or <a [href]="'#/login'">Login</a>
+
+</form>
