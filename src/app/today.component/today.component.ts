@@ -4,6 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Lesson } from '../models/Lesson';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'today',
@@ -14,7 +15,7 @@ export class TodayComponent implements OnInit {
 
   public lessons: Lesson[] = [];
 
-  constructor(private api: ApiService) {
+  constructor(public auth: AuthService, private api: ApiService) {
   }
 
   public ngOnInit() {

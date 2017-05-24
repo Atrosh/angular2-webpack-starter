@@ -40,6 +40,8 @@ import { NewCourseComponent } from './new-course.component/new-course.component'
 import { UnitDetailsComponent } from './unit-details.component/unit-details.component';
 import { CourseInfoComponent } from './course-info.component/course-info.component';
 import { ParagraphDetailsComponent } from './prgraph-details.component/prgraph-details.component';
+import { CoursesComponent } from './courses.component/courses.component';
+import { CourseDetailsComponent } from './course-details.component/course-details.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -76,7 +78,9 @@ type StoreType = {
     EditUnitComponent,
     EditParagraphComponent,
     UnitDetailsComponent,
-    ParagraphDetailsComponent
+    ParagraphDetailsComponent,
+    CoursesComponent,
+    CourseDetailsComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

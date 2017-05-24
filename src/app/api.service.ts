@@ -169,6 +169,11 @@ export class ApiService {
       .map((res) => res.json());
   }
 
+  public getUserCourses() {
+    return this.http.get(this.API_URL + 'course/user', this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
   public getCourseSteps(courseId) {
     return this.http.get(this.API_URL + 'step/course/' + courseId, this.getRequestOptions())
       .map((res) => res.json());

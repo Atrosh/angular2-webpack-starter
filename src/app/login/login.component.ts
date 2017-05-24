@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   public onLogin() {
+    this.error = '';
     this.api.login(this.credentials).subscribe(
       (data) => {
         localStorage.setItem('id_token', data.token);

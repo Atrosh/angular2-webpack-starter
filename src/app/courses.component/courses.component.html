@@ -1,0 +1,28 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#myCourses" role="tab">My courses</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#teachingCourses" role="tab"
+       *ngIf="auth.isAdmin() || auth.isModer()">Teaching</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content container">
+  <div class="tab-pane active" id="myCourses" role="tabpanel">
+    <h4>Your courses</h4>
+    <div *ngFor="let course of learningCourses">
+      <course-details [course]="course"></course-details>
+      <hr>
+    </div>
+  </div>
+  <div class="tab-pane" id="teachingCourses" role="tabpanel" *ngIf="auth.isAdmin()">
+    <h4>Organisations list</h4>
+    <div *ngFor="let course of teachingCourses">
+      <course-details [course]="course"></course-details>
+      <hr>
+    </div>
+  </div>
+</div>
+

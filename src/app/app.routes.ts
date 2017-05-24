@@ -14,6 +14,7 @@ import { EditUnitComponent } from './edit-unit.component/edit-unit.component';
 import { EditParagraphComponent } from './edit-paragraph.component/edit-paragraph.component';
 import { NewCourseComponent } from './new-course.component/new-course.component';
 import { CourseInfoComponent } from './course-info.component/course-info.component';
+import { CoursesComponent } from './courses.component/courses.component';
 
 export const ROUTES: Routes = [
   {path: '', component: TodayComponent, canActivate: [AuthGuard]},
@@ -21,6 +22,7 @@ export const ROUTES: Routes = [
   {path: 'week', component: WeekComponent, canActivate: [AuthGuard]},
   {path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
   {path: 'course/:id', component: CourseComponent, canActivate: [AuthGuard]},
+  {path: 'courses', component: CoursesComponent, canActivate: [AuthGuard]},
   {path: 'course-info/:id', component: CourseInfoComponent, canActivate: [AuthGuard]},
   {path: 'new-course', component: NewCourseComponent, canActivate: [AuthGuard]},
   {path: 'edit-course/:id', component: EditCourseComponent, canActivate: [AuthGuard]},

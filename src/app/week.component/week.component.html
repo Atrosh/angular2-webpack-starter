@@ -6,6 +6,7 @@
           <a [href]="'#/course-info/' + l.course.id" target="_blank">{{l.course.name}}</a>,
           {{l.info}}</h5>
         <p class="list-group-item-text">{{l.task}}</p>
+        <p *ngIf="auth.isAdmin() || auth.isModer()" class="list-group-item-text">{{l.user.lastName + ' ' + l.user.firstName}}</p>
       </a>
     </div>
   </div>

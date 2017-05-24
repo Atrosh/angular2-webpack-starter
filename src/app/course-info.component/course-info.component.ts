@@ -5,7 +5,6 @@ import { AuthService } from '../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Course } from '../models/Course';
-import { User } from '../models/User';
 import { ActivatedRoute } from '@angular/router';
 import { Unit } from '../models/Unit';
 
@@ -17,10 +16,7 @@ import { Unit } from '../models/Unit';
 export class CourseInfoComponent implements OnInit {
 
   public course: Course = new Course();
-  public user: User = new User(null);
   public units: Unit[] = [];
-  public stepsCount: number;
-  public passedSteps: number;
 
   constructor(public auth: AuthService, private api: ApiService, private route: ActivatedRoute) {
   }
@@ -31,7 +27,6 @@ export class CourseInfoComponent implements OnInit {
       (error) => console.log(error)
     );
     this.getUnits();
-    this.getCourseProgress();
   }
 
   private getUnits() {
@@ -41,14 +36,4 @@ export class CourseInfoComponent implements OnInit {
     );
   }
 
-  private getCourseProgress() {
-    this.api.getCourseStepCount(this.route.snapshot.params['id']).subscribe(
-      (data) => this.stepsCount = data,
-      (error) => console.log(error)
-    );
-    this.api.getCourseProgressCount(this.route.snapshot.params['id']).subscribe(
-      (data) => this.passedSteps = data,
-      (error) => console.log(error)
-    );
-  }
 }
