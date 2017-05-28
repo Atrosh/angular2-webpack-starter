@@ -32,7 +32,7 @@ export class EditCourseComponent implements OnInit {
     this.getUnits();
   }
 
-  public createCourse() {
+  public saveCourse() {
     this.api.saveUnits(this.units).subscribe();
     this.api.updateCourse(this.course).subscribe(
       (data) => {
@@ -53,6 +53,7 @@ export class EditCourseComponent implements OnInit {
     }
     this.units = this.units.filter((unit) => unit !== deletedUnit);
     this.reorderUnits();
+    this.saveCourse();
   }
 
   private reorderUnits() {

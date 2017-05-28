@@ -1,16 +1,18 @@
-<form *ngIf="course.id > 0" (ngSubmit)="createCourse()" #unitsForm="ngForm">
-  <h4>Edit course</h4>
-  <label for="editCourseNameId">Name</label>
-  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" id="editCourseNameId" placeholder="Course name"
-         [(ngModel)]="course.name" name="editCourseName" required>
-  <label for="description">Course description</label>
-  <textarea class="form-control mb-2 mr-sm-2 mb-sm-1" id="description" rows="3"
-            [(ngModel)]="course.description" name="editCourseDescription"></textarea>
-  <div class="form-check">
-    <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" name="editCoursePublic" [(ngModel)]="course.open">
-      Public course
-    </label>
+<form *ngIf="course.id > 0" (ngSubmit)="saveCourse()" #unitsForm="ngForm">
+  <div class="mb-2 mr-sm-2 mb-sm-1">
+    <h4>Edit course</h4>
+    <label for="editCourseNameId">Name</label>
+    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" id="editCourseNameId" placeholder="Course name"
+           [(ngModel)]="course.name" name="editCourseName" required>
+    <label for="description">Course description</label>
+    <textarea class="form-control mb-2 mr-sm-2 mb-sm-1" id="description" rows="3"
+              [(ngModel)]="course.description" name="editCourseDescription"></textarea>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" name="editCoursePublic" [(ngModel)]="course.open">
+        Public course
+      </label>
+    </div>
   </div>
   <label>Units</label>
   <div class="card mb-2 mr-sm-2 mb-sm-1" *ngFor="let unit of units | orderBy: 'serial'">

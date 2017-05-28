@@ -1,5 +1,5 @@
 <form *ngIf="auth.isAdmin() || auth.isModer(); else noPermisions"
-      (ngSubmit)="createCourse(); courseForm.reset()" #courseForm="ngForm">
+      (ngSubmit)="createCourse(); courseForm.reset()" #courseForm="ngForm" class="mb-2 mr-sm-2 mb-sm-1">
   <h4>Create new course</h4>
   <label for="newCourseNameId">Course name</label>
   <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="Course name"

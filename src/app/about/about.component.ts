@@ -3,20 +3,17 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'about',
-  styles: [`
-  `],
   template: `
     <h1>About</h1>
+    <h3>
+      Дипломная работа
+    </h3>
     <div>
-      For hot module reloading run
-      <pre>npm run start:hmr</pre>
+      <h5>
+        «Информационная онлайн-система для обучения, контроля и оценки
+        учащихся образовательного центра»
+      </h5>
     </div>
-    <div>
-      <h3>
-        patrick@AngularClass.com
-      </h3>
-    </div>
-    <pre>this.localState = {{ localState | json }}</pre>
   `
 })
 export class AboutComponent implements OnInit {

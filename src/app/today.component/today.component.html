@@ -1,7 +1,7 @@
 <div *ngIf="lessons.length > 0; else noLessons">
   <h5>Today:</h5>
-  <div class="list-group">
-    <a *ngFor="let l of lessons | orderBy: 'date'" class="list-group-item list-group-item-action">
+  <div class="list-group mb-2 mr-sm-2 mb-sm-1">
+    <a *ngFor="let l of lessons | orderBy: 'date'" class="list-group-item list-group-item-action mb-2 mr-sm-2 mb-sm-1">
       <h5 class="list-group-item-heading"> {{l.date | date: 'HH:mm'}}, <a [href]="'#/course-info/' + l.course.id" target="_blank">{{l.course.name}}</a>, {{l.info}}</h5>
       <p class="list-group-item-text">{{l.task}}</p>
       <p *ngIf="auth.isAdmin() || auth.isModer()" class="list-group-item-text">

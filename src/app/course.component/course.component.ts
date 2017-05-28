@@ -63,7 +63,9 @@ export class CourseComponent implements OnInit {
     if (this.steps.length > i + 1) {
       this.currentStep = this.steps[i + 1];
     } else {
-      this.finished = true;
+      if (this.steps.length === this.progresses.length) {
+        this.finished = true;
+      }
     }
   }
 

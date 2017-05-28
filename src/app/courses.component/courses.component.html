@@ -11,18 +11,26 @@
 <!-- Tab panes -->
 <div class="tab-content container">
   <div class="tab-pane active" id="myCourses" role="tabpanel">
-    <h4>Your courses</h4>
-    <div *ngFor="let course of learningCourses">
-      <course-details [course]="course"></course-details>
-      <hr>
+    <div *ngIf="learningCourses; else noCourses">
+      <h4>Your courses</h4>
+      <div *ngFor="let course of learningCourses">
+        <course-details [course]="course"></course-details>
+        <hr>
+      </div>
     </div>
   </div>
-  <div class="tab-pane" id="teachingCourses" role="tabpanel" *ngIf="auth.isAdmin()">
-    <h4>Organisations list</h4>
-    <div *ngFor="let course of teachingCourses">
-      <course-details [course]="course"></course-details>
-      <hr>
+  <div class="tab-pane" id="teachingCourses" role="tabpanel" *ngIf="auth.isAdmin() || auth.isModer()">
+    <div *ngIf="teachingCourses; else noCourses">
+      <h4>Teaching</h4>
+      <div *ngFor="let course of teachingCourses">
+        <course-details [course]="course"></course-details>
+        <hr>
+      </div>
     </div>
   </div>
 </div>
-
+<ng-template #noCourses>
+  <h5>
+    No courses
+  </h5>
+</ng-template>

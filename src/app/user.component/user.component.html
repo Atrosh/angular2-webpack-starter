@@ -1,4 +1,4 @@
-<div class="card card-block" *ngIf="loggedIn()">
+<div class="card card-block mb-2 mr-sm-2 mb-sm-1" *ngIf="loggedIn()">
   <h4 class="card-title">{{user?.firstName + " " + user?.lastName}}</h4>
   <p class="card-text">{{user?.info}}</p>
   <button type="button" class="btn btn-primary" (click)="logOut()">

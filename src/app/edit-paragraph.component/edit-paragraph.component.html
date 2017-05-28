@@ -1,17 +1,19 @@
-<form *ngIf="paragraph.id > 0" (ngSubmit)="saveParagraph()" #stepsForm="ngForm" class="col-sm-12">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a target="_blank" [href]="'#/edit-course/' + paragraph.unit.course.id">
-      {{paragraph.unit.course.name}}</a></li>
-    <li class="breadcrumb-item"><a target="_blank" [href]="'#/edit-unit/' + paragraph.unit.id">
-      {{paragraph.unit.serial}} {{paragraph.unit.name}}</a></li>
-    <li class="breadcrumb-item active">{{paragraph.serial}} {{paragraph.name}}</li>
-  </ol>
-  <h4>Edit paragraph</h4>
-  <label for="editParagraphNameId">Name</label>
-  <div class="input-group">
-    <span class="input-group-addon" id="btnGroupAddon">{{paragraph.unit.serial}}.{{paragraph.serial}}</span>
-    <input type="text" class="form-control" id="editParagraphNameId" placeholder="Paragraph name"
-           [(ngModel)]="paragraph.name" name="editParagraphName" required>
+<form *ngIf="paragraph.id > 0" (ngSubmit)="saveParagraph()" #stepsForm="ngForm">
+  <div class="mb-2 mr-sm-2 mb-sm-1">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a target="_blank" [href]="'#/edit-course/' + paragraph.unit.course.id">
+        {{paragraph.unit.course.name}}</a></li>
+      <li class="breadcrumb-item"><a target="_blank" [href]="'#/edit-unit/' + paragraph.unit.id">
+        {{paragraph.unit.serial}} {{paragraph.unit.name}}</a></li>
+      <li class="breadcrumb-item active">{{paragraph.serial}} {{paragraph.name}}</li>
+    </ol>
+    <h4>Edit paragraph</h4>
+    <label for="editParagraphNameId">Name</label>
+    <div class="input-group">
+      <span class="input-group-addon" id="btnGroupAddon">{{paragraph.unit.serial}}.{{paragraph.serial}}</span>
+      <input type="text" class="form-control" id="editParagraphNameId" placeholder="Paragraph name"
+             [(ngModel)]="paragraph.name" name="editParagraphName" required>
+    </div>
   </div>
   <label>Steps</label>
   <div>
@@ -33,5 +35,8 @@
     <button type="submit" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1"
             [disabled]="!steps.length > 0 || !stepsForm.form.valid">Save
     </button>
+  </div>
+  <div class="alert alert-info mb-2 mr-sm-2 mb-sm-1" role="alert" [hidden]="!saved">
+    <strong>Success!</strong> Changes saved.
   </div>
 </form>

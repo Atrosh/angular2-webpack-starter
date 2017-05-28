@@ -1,16 +1,18 @@
 <form *ngIf="unit.id > 0" (ngSubmit)="saveUnit()" #paragraphsForm="ngForm">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a target="_blank" [href]="'#/edit-course/' + unit.course.id">
-      {{unit.course.name}}</a>
-    </li>
-    <li class="breadcrumb-item active">{{unit.serial}} {{unit.name}}</li>
-  </ol>
-  <h4>Edit unit</h4>
-  <label for="editUnitNameId">Name</label>
-  <div class="input-group">
-    <span class="input-group-addon" id="btnGroupAddon">{{unit.serial}}</span>
-    <input type="text" class="form-control" id="editUnitNameId" placeholder="Unit name"
-           [(ngModel)]="unit.name" name="editUnitName" required>
+  <div class="mb-2 mr-sm-2 mb-sm-1">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a target="_blank" [href]="'#/edit-course/' + unit.course.id">
+        {{unit.course.name}}</a>
+      </li>
+      <li class="breadcrumb-item active">{{unit.serial}} {{unit.name}}</li>
+    </ol>
+    <h4>Edit unit</h4>
+    <label for="editUnitNameId">Name</label>
+    <div class="input-group">
+      <span class="input-group-addon" id="btnGroupAddon">{{unit.serial}}</span>
+      <input type="text" class="form-control" id="editUnitNameId" placeholder="Unit name"
+             [(ngModel)]="unit.name" name="editUnitName" required>
+    </div>
   </div>
   <label>Paragraphs</label>
   <div class="card mb-2 mr-sm-2 mb-sm-1" *ngFor="let p of paragraphs | orderBy: 'serial'">
@@ -26,7 +28,7 @@
     </div>
   </div>
   <div class="form-group form-inline">
-    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="New unit name"
+    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-1" placeholder="New paragraph name"
            [(ngModel)]="newParagraphName" name="newUnitName">
     <button type="button" class="btn btn-primary mb-2 mr-sm-2 mb-sm-1" [disabled]="!newParagraphName"
             (click)="addParagraph(newParagraphName);newParagraphName=''">Add paragraph

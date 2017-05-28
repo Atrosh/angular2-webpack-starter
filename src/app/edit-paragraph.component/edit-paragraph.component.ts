@@ -18,6 +18,7 @@ export class EditParagraphComponent implements OnInit {
   public editStep: Step = new Step(null, null);
   public paragraph: Paragraph = new Paragraph(null, null, null);
   public steps: Step[] = [];
+  public saved: boolean = false;
 
   constructor(private auth: AuthService, private api: ApiService, private route: ActivatedRoute) {
   }
@@ -36,6 +37,10 @@ export class EditParagraphComponent implements OnInit {
       (data) => {
         this.paragraph = data;
         this.getSteps();
+        this.saved = true;
+        setTimeout(() => {
+          this.saved = false;
+        }, 3000);
       },
       (error) => console.log(error)
     );
@@ -53,6 +58,7 @@ export class EditParagraphComponent implements OnInit {
     this.steps = this.steps.filter((step) => step !== deletedStep);
     this.editStep = new Step(null, null);
     this.reorderSteps();
+    this.saveParagraph();
   }
 
   private reorderSteps() {
