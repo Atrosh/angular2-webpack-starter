@@ -42,6 +42,10 @@ export class ApiService {
     return this.http.delete(this.API_URL + 'organisation/' + id, this.getRequestOptions());
   }
 
+  public deleteLesson(id) {
+    return this.http.delete(this.API_URL + 'lesson/' + id, this.getRequestOptions());
+  }
+
   public createNewUser(user) {
     return this.http.post(this.API_URL + 'user', user, this.getRequestOptions())
       .map((res) => res.json());
@@ -58,8 +62,7 @@ export class ApiService {
   }
 
   public createLessons(lessons) {
-    return this.http.post(this.API_URL + 'lesson', lessons, this.getRequestOptions())
-      .map((res) => res.json());
+    return this.http.post(this.API_URL + 'lesson', lessons, this.getRequestOptions());
   }
 
   public saveUnits(units) {
@@ -91,6 +94,11 @@ export class ApiService {
 
   public updateParagraph(paragraph) {
     return this.http.put(this.API_URL + 'paragraph', paragraph, this.getRequestOptions())
+      .map((res) => res.json());
+  }
+
+  public updateLesson(lesson) {
+    return this.http.put(this.API_URL + 'lesson', lesson, this.getRequestOptions())
       .map((res) => res.json());
   }
 
@@ -149,8 +157,8 @@ export class ApiService {
       .map((res) => res.json());
   }
 
-  public getWeek() {
-    return this.http.get(this.API_URL + 'lesson/week', this.getRequestOptions())
+  public getWeek(offset) {
+    return this.http.get(this.API_URL + 'lesson/week/' + offset, this.getRequestOptions())
       .map((res) => res.json());
   }
 

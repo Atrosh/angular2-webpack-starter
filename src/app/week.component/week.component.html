@@ -1,13 +1,41 @@
-<div class="row" *ngIf="day">
+<div class="row">
   <div class="col-sm-12">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="week < 1">
+          <button class="page-link" (click)="getPrevious()">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Previous week
+          </button>
+        </li>
+        <li class="page-item" [class.disabled]="week === 0">
+          <button class="page-link" (click)="getCurrent()">
+            Go to current week
+          </button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" (click)="getNext()">
+            Next week <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-sm-12" *ngIf="day">
+    <h5>{{day[0]?.date | date: 'EEEE (dd.MM.yy)'}}</h5>
     <div class="list-group mb-2 mr-sm-2 mb-sm-1">
-      <a *ngFor="let l of day | orderBy: 'date'" class="list-group-item list-group-item-action">
-        <h5 class="list-group-item-heading"> {{l.date | date: 'HH:mm'}},
-          <a [href]="'#/course-info/' + l.course.id" target="_blank">{{l.course.name}}</a>, {{l.info}}</h5>
-        <p class="list-group-item-text">{{l.task}}</p>
-        <p *ngIf="auth.isAdmin() || auth.isModer()" class="list-group-item-text">
-          {{l.user.lastName + ' ' + l.user.firstName}}
-        </p>
+      <a *ngFor="let l of day | orderBy: 'date'"
+         class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{l.date | date: 'HH:mm'}},
+            <a [href]="'#/course-info/' + l.course.id" target="_blank">{{l.course.name}}</a>
+            <span *ngIf="auth.isAdmin() || auth.isModer()" class="list-group-item-text">
+          , {{l.user.lastName + ' ' + l.user.firstName}}</span></h5>
+          <button *ngIf="auth.isAdmin()" type="button" class="close" aria-label="Close" (click)="deleteLesson(l)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <p class="mb-1">{{l.task}}</p>
+        <small>{{l.info}}</small>
       </a>
     </div>
   </div>
@@ -16,7 +44,7 @@
   <div class="col-sm-6" *ngFor="let d of days">
     <div class="card mb-2 mr-sm-2 mb-sm-1" *ngIf="d[0]?.date > 0; else noLessons">
       <div class="card-header" (click)="selectDay(d)">
-        {{d[0]?.date | date: 'EEE, dd.MM' }}
+        {{d[0]?.date | date: 'EEEE, dd.MM' }}
       </div>
       <div class="card-block">
         <blockquote class="card-blockquote" *ngFor="let lesson of d | orderBy: 'date'">
